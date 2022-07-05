@@ -7,6 +7,7 @@
 	move_delay = 4
 	turn_delay = 1
 	power_use = 25
+	trample_damage = 10
 
 /obj/item/mech_component/propulsion/tracks
 	name = "tracks"
@@ -18,6 +19,7 @@
 	turn_delay = 7
 	power_use = 150
 	color = COLOR_WHITE
+	trample_damage = 20
 
 /obj/item/mech_component/chassis/pod
 	name = "spherical exosuit chassis"
@@ -27,7 +29,7 @@
 	hide_pilot = TRUE //Sprite too small, legs clip through, so for now hide pilot
 	exosuit_desc_string = "a spherical chassis"
 	icon_state = "pod_body"
-	max_damage = 70
+	max_damage = 125
 	power_use = 5
 	has_hardpoints = list(HARDPOINT_BACK)
 	desc = "The NanoTrasen Katamari series cockpits have won a massive tender by SCG few years back. No one is sure why, but these terrible things keep popping up on every government facility."

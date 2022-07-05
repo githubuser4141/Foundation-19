@@ -33,7 +33,7 @@
 
 /obj/item/robot_parts/robot_component/armour/exosuit/em
 	name = "EM-shielded armour plating"
-	desc = "A shielded plating that sorrounds the eletronics and protects them from electromagnetic radiation."
+	desc = "A shielded plating that surrounds the eletronics and protects them from electromagnetic radiation."
 	icon_state = "armor_e"
 	icon_state_broken = "armor_e_broken"
 	armor = list(
@@ -54,8 +54,8 @@
 	icon_state_broken = "armor_c_broken"
 	armor = list(
 		melee = ARMOR_MELEE_MAJOR,
-		bullet = ARMOR_BALLISTIC_RESISTANT,
-		laser = ARMOR_LASER_HANDGUNS,
+		bullet = ARMOR_BALLISTIC_RIFLE,
+		laser = ARMOR_LASER_MAJOR,
 		energy = ARMOR_ENERGY_MINOR,
 		bomb = ARMOR_BOMB_RESISTANT,
 		bio = ARMOR_BIO_SHIELDED

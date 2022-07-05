@@ -40,17 +40,20 @@
 	name = "combat arms"
 	exosuit_desc_string = "flexible, advanced manipulators"
 	icon_state = "combat_arms"
-	melee_damage = 5
+	melee_damage = 30
 	action_delay = 10
-	power_use = 50
+	max_damage = 100
+	power_use = 75
 
 /obj/item/mech_component/propulsion/combat
 	name = "combat legs"
 	exosuit_desc_string = "sleek hydraulic legs"
 	icon_state = "combat_legs"
 	move_delay = 3
-	turn_delay = 3
+	turn_delay = 2
+	max_damage = 100
 	power_use = 20
+	trample_damage = 15
 
 /obj/item/mech_component/sensors/combat
 	name = "combat sensors"
@@ -70,6 +73,7 @@
 	name = "sealed exosuit chassis"
 	hatch_descriptor = "canopy"
 	pilot_coverage = 100
+	mech_health = 400
 	exosuit_desc_string = "an armoured chassis"
 	icon_state = "combat_body"
 	power_use = 40
@@ -87,5 +91,5 @@
 			"[WEST]"  = list("x" = 12, "y" = 8)
 		)
 	)
-	
+
 	. = ..()

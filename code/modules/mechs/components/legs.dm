@@ -7,6 +7,7 @@
 	var/obj/item/robot_parts/robot_component/actuator/motivator
 	power_use = 50
 	var/max_fall_damage = 30
+	var/trample_damage = 5
 
 /obj/item/mech_component/propulsion/Destroy()
 	QDEL_NULL(motivator)
