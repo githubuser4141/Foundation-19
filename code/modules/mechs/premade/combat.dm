@@ -74,6 +74,7 @@
 	hatch_descriptor = "canopy"
 	pilot_coverage = 100
 	mech_health = 400
+	max_damage = 175
 	exosuit_desc_string = "an armoured chassis"
 	icon_state = "combat_body"
 	power_use = 40

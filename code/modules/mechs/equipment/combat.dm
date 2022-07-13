@@ -235,7 +235,7 @@
 	slot_flags = 0
 	default_material = MATERIAL_STEEL
 	base_parry_chance = 0 //Irrelevant for exosuits, revise if this changes
-	max_force = 25
+	max_force = 50
 	force_multiplier = 0.75 // Equals 20 AP with 25 force
 	unbreakable = TRUE //Else we need a whole system for replacement blades
 	attack_cooldown_modifier = 10
@@ -398,7 +398,7 @@
 				icon_state = "mech_shield_[hardpoint]"
 				var/image/I = image(icon, "[icon_state]_over")
 				I.layer = ABOVE_HUMAN_LAYER
-				add_overlay(I)
+				overlays.Add(I)
 
 /obj/aura/mech_ballistic/added_to(mob/living/target)
 	. = ..()

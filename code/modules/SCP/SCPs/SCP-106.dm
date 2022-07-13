@@ -97,10 +97,11 @@ GLOBAL_LIST_EMPTY(scp106_spawnpoints)
 /mob/living/carbon/human/scp106/attack_hand(var/mob/living/L)
 	if (L == src)
 		return ..(L)
+/*
 	var/mob/living/exosuit/E
 	if (L == /mob/living/exosuit)
 		visible_message("<span class = 'danger'>[L] swipes at the [E]'s armour, leaving a streak of rust!</span>")
-
+*/
 	visible_message("<span class = 'danger'>[L] is warped away!</span>")
 	L.forceMove(pick(GLOB.scp106_floors))
 

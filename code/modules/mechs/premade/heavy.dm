@@ -65,7 +65,7 @@
 	pilot_coverage = 100
 	exosuit_desc_string = "a heavily armoured chassis"
 	icon_state = "heavy_body"
-	max_damage = 250
+	max_damage = 300
 	mech_health = 700
 	power_use = 50
 	has_hardpoints = list(HARDPOINT_BACK)
