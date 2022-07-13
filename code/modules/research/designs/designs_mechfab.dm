@@ -140,7 +140,7 @@
 	build_path = /obj/item/robot_parts/robot_component/armour/exosuit/em
 	time = 50
 	req_tech = list(TECH_MATERIAL = 2)
-	materials = list(MATERIAL_STEEL = 5000, MATERIAL_ALUMINUM = 7500)
+	materials = list(MATERIAL_STEEL = 5000, MATERIAL_ALUMINIUM = 7500)
 
 /datum/design/item/mechfab/exosuit/combat_armour
 	name = "Combat exosuit armour"
@@ -161,7 +161,7 @@
 	name = "combat exosuit chassis"
 	id = "combat_body"
 	time = 60
-	materials = list(MATERIAL_STEEL = 25000, MATERIAL_TITANIUM = 20000, MATERIAL_ALUMINUM = 7500)
+	materials = list(MATERIAL_STEEL = 25000, MATERIAL_TITANIUM = 20000, MATERIAL_ALUMINIUM = 7500)
 	build_path = /obj/item/mech_component/chassis/combat
 	req_tech = list(TECH_COMBAT = 3)
 
@@ -169,7 +169,7 @@
 	name = "combat exosuit manipulators"
 	id = "combat_arms"
 	time = 30
-	materials = list(MATERIAL_STEEL = 10000, MATERIAL_TITANIUM = 15000, MATERIAL_ALUMINUM = 5000)
+	materials = list(MATERIAL_STEEL = 10000, MATERIAL_TITANIUM = 15000, MATERIAL_ALUMINIUM = 5000)
 	build_path = /obj/item/mech_component/manipulators/combat
 	req_tech = list(TECH_COMBAT = 3)
 
@@ -177,7 +177,7 @@
 	name = "combat exosuit manipulators"
 	id = "combat_head"
 	time = 30
-	materials = list(MATERIAL_STEEL = 10000, MATERIAL_TITANIUM = 15000, MATERIAL_ALUMINUM = 5000)
+	materials = list(MATERIAL_STEEL = 10000, MATERIAL_TITANIUM = 15000, MATERIAL_ALUMINIUM = 5000)
 	build_path = /obj/item/mech_component/sensors/combat
 	req_tech = list(TECH_COMBAT = 3)
 
@@ -185,7 +185,7 @@
 	name = "combat exosuit motivators"
 	id = "combat_legs"
 	time = 30
-	materials = list(MATERIAL_STEEL = 10000, MATERIAL_TITANIUM = 15000, MATERIAL_ALUMINUM = 5000)
+	materials = list(MATERIAL_STEEL = 10000, MATERIAL_TITANIUM = 15000, MATERIAL_ALUMINIUM = 5000)
 	build_path = /obj/item/mech_component/propulsion/combat
 	req_tech = list(TECH_COMBAT = 3)
 
@@ -201,27 +201,27 @@
 	id = "powerloader_body"
 	build_path = /obj/item/mech_component/chassis/powerloader
 	time = 50
-	materials = list(MATERIAL_STEEL = 12500, MATERIAL_ALUMINUM = 7500)
+	materials = list(MATERIAL_STEEL = 12500, MATERIAL_ALUMINIUM = 7500)
 
 /datum/design/item/mechfab/exosuit/powerloader_arms
 	name = "power loader manipulators"
 	id = "powerloader_arms"
 	build_path = /obj/item/mech_component/manipulators/powerloader
 	time = 30
-	materials = list(MATERIAL_STEEL = 7500, MATERIAL_ALUMINUM = 2500)
+	materials = list(MATERIAL_STEEL = 7500, MATERIAL_ALUMINIUM = 2500)
 
 /datum/design/item/mechfab/exosuit/powerloader_legs
 	name = "power loader motivators"
 	id = "powerloader_legs"
 	build_path = /obj/item/mech_component/propulsion/powerloader
 	time = 30
-	materials = list(MATERIAL_STEEL = 7500, MATERIAL_ALUMINUM = 2500)
+	materials = list(MATERIAL_STEEL = 7500, MATERIAL_ALUMINIUM = 2500)
 
 /datum/design/item/mechfab/exosuit/light_head
 	name = "light exosuit sensors"
 	id = "light_head"
 	time = 20
-	materials = list(MATERIAL_STEEL = 2500, MATERIAL_ALUMINUM = 5000)
+	materials = list(MATERIAL_STEEL = 2500, MATERIAL_ALUMINIUM = 5000)
 	build_path = /obj/item/mech_component/sensors/light
 	req_tech = list(TECH_MATERIAL = 1)
 
@@ -229,7 +229,7 @@
 	name = "light exosuit chassis"
 	id = "light_body"
 	time = 40
-	materials = list(MATERIAL_STEEL = 5000, MATERIAL_ALUMINUM = 15000, MATERIAL_TITANIUM = 2500)
+	materials = list(MATERIAL_STEEL = 5000, MATERIAL_ALUMINIUM = 15000, MATERIAL_TITANIUM = 2500)
 	build_path = /obj/item/mech_component/chassis/light
 	req_tech = list(TECH_MATERIAL = 1)
 
@@ -237,7 +237,7 @@
 	name = "light exosuit manipulators"
 	id = "light_arms"
 	time = 20
-	materials = list(MATERIAL_STEEL = 5000, MATERIAL_ALUMINUM = 7500, MATERIAL_TITANIUM = 1250)
+	materials = list(MATERIAL_STEEL = 5000, MATERIAL_ALUMINIUM = 7500, MATERIAL_TITANIUM = 1250)
 	build_path = /obj/item/mech_component/manipulators/light
 	req_tech = list(TECH_MATERIAL = 1)
 
@@ -245,7 +245,7 @@
 	name = "light exosuit motivators"
 	id = "light_legs"
 	time = 25
-	materials = list(MATERIAL_STEEL = 5000, MATERIAL_ALUMINUM = 7500, MATERIAL_TITANIUM = 1250)
+	materials = list(MATERIAL_STEEL = 5000, MATERIAL_ALUMINIUM = 7500, MATERIAL_TITANIUM = 1250)
 	build_path = /obj/item/mech_component/propulsion/light
 	req_tech = list(TECH_MATERIAL = 1)
 
@@ -299,7 +299,7 @@
 	id = "sphere_body"
 	build_path = /obj/item/mech_component/chassis/pod
 	time = 50
-	materials = list(MATERIAL_STEEL = 15000, MATERIAL_ALUMINUM = 7500)
+	materials = list(MATERIAL_STEEL = 15000, MATERIAL_ALUMINIUM = 7500)
 
 /datum/design/item/robot_upgrade
 	build_type = MECHFAB

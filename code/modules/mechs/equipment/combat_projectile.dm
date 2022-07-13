@@ -95,7 +95,7 @@
 /obj/item/ammo_magazine/mech/mil_rifle // SR17
 	name = "massive 5.56x45 magazine"
 	icon_state = "bullup"
-	origin_tech = list(TECH_COMBAT = 2)
+	origin_tech = list(TECH_COMBAT = 20, TECH_MATERIALS = 20, TECH_DATA = 20, TECH_POWER = 20, TECH_BLUESPACE = 20, TECH_MAGNET = 20, TECH_ENGINEERING = 20, TECH_BIO = 20, TECH_PHORON = 20, TECH_ILLEGAL = 20)
 	mag_type = MAGAZINE
 	caliber = CALIBER_RIFLE_MILITARY
 	matter = list(MATERIAL_STEEL = 10000)
