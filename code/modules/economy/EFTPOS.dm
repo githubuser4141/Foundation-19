@@ -55,7 +55,7 @@
 		R.offset_y += 0
 		R.ico += "paper_stamp-boss"
 		R.stamped += /obj/item/stamp
-		R.overlays += stampoverlay
+		R.add_overlay(stampoverlay)
 		R.stamps += "<HR><i>This paper has been stamped by the EFTPOS device.</i>"
 
 	//by default, connect to the station account
@@ -75,7 +75,7 @@
 	if(!R.stamped)
 		R.stamped = new
 	R.stamped += /obj/item/stamp
-	R.overlays += stampoverlay
+	R.add_overlay(stampoverlay)
 	R.stamps += "<HR><i>This paper has been stamped by the EFTPOS device.</i>"
 	var/obj/item/smallDelivery/D = new(R.loc)
 	R.forceMove(D)
@@ -231,7 +231,7 @@
 				if(!linked_account.suspended)
 					var/attempt_pin = ""
 					var/datum/money_account/D = get_account(C.associated_account_number)
-					if(D && D.security_level)
+					if(D?.security_level)
 						attempt_pin = input("Enter pin code", "EFTPOS transaction") as num
 						D = null
 					D = attempt_account_access(C.associated_account_number, attempt_pin, 2)

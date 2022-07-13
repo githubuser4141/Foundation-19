@@ -144,7 +144,7 @@
 
 				var/title = job.title
 				var/title_link = length(job.alt_titles) ? "<a href='?src=\ref[src];select_alt_title=\ref[job]'>[pref.GetPlayerAltTitle(job)]</a>" : job.title
-				if((title in SSjobs.titles_by_department(COM)) || (title == "AI"))//Bold head jobs
+				if((title in SSjobs.titles_by_department(COM)) || (title == "AIC"))//Bold head jobs
 					title_link = "<b>[title_link]</b>"
 
 				var/help_link = "</td><td width = '10%' align = 'center'><a href='?src=\ref[src];job_info=[title]'>?</a></td>"
@@ -244,8 +244,8 @@
 	switch(pref.alternate_option)
 		if(GET_RANDOM_JOB)
 			. += "<u><a href='?src=\ref[src];job_alternative=1'>Get random job if preferences unavailable</a></u>"
-		if(BE_ASSISTANT)
-			. += "<u><a href='?src=\ref[src];job_alternative=1'>Be assistant if preference unavailable</a></u>"
+		if(BE_CLASS_D)
+			. += "<u><a href='?src=\ref[src];job_alternative=1'>Be a Class D if preference unavailable</a></u>"
 		if(RETURN_TO_LOBBY)
 			. += "<u><a href='?src=\ref[src];job_alternative=1'>Return to lobby if preference unavailable</a></u>"
 	. += "<a href='?src=\ref[src];reset_jobs=1'>\[Reset\]</a></center>"
@@ -305,7 +305,7 @@
 		return TOPIC_REFRESH
 
 	else if(href_list["job_alternative"])
-		if(pref.alternate_option == GET_RANDOM_JOB || pref.alternate_option == BE_ASSISTANT)
+		if(pref.alternate_option == GET_RANDOM_JOB || pref.alternate_option == BE_CLASS_D)
 			pref.alternate_option += 1
 		else if(pref.alternate_option == RETURN_TO_LOBBY)
 			pref.alternate_option = 0
@@ -541,7 +541,7 @@
 		if(!(job_title in allowed_titles))
 			pref.job_low -= job_title
 
-datum/category_item/player_setup_item/proc/prune_occupation_prefs()
+/datum/category_item/player_setup_item/proc/prune_occupation_prefs()
 	prune_job_prefs()
 	validate_branch_and_rank()
 

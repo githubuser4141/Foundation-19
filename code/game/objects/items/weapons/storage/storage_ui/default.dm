@@ -148,7 +148,7 @@
 /datum/storage_ui/default/prepare_ui()
 	//if storage slots is null then use the storage space UI, otherwise use the slots UI
 	for(var/mob/user in is_seeing)
-		if(user)
+		if(user && user.client)
 			user.client.screen -= containers
 	for(var/container in containers)
 		if(container)
@@ -263,9 +263,9 @@
 		container.icon_state = "blank"
 		container.layer = HUD_CLICKABLE_LAYER
 
-		container.overlays += stored_start
-		container.overlays += stored_continue
-		container.overlays += stored_end
+		container.add_overlay(stored_start)
+		container.add_overlay(stored_continue)
+		container.add_overlay(stored_end)
 
 		container.SetName(O.name)
 		container.master = O

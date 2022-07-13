@@ -384,8 +384,7 @@
 			if(isobj(A.loc))
 				look_target = "inside \the [A.loc]"
 			if(A == src)
-				var/datum/gender/T = gender_datums[get_gender()]
-				look_target = "at [T.self]"
+				look_target = "at [p_themself()]"
 			for(var/mob/M in viewers(4, src))
 				if(M == src)
 					continue
@@ -694,7 +693,7 @@
 	return stat == DEAD
 
 /mob/proc/is_mechanical()
-	if(mind && (mind.assigned_role == "Robot" || mind.assigned_role == "AI"))
+	if(mind && (mind.assigned_role == "Robot" || mind.assigned_role == "AIC"))
 		return 1
 	return istype(src, /mob/living/silicon) || get_species() == SPECIES_IPC
 

@@ -12,8 +12,8 @@
 	var/amount_per_transfer_from_this = 10
 	var/possible_transfer_amounts = "10;25;50;100;500"
 
-	attackby(obj/item/W as obj, mob/user as mob)
-		return
+/obj/structure/reagent_dispensers/attackby(obj/item/W as obj, mob/user as mob)
+	return
 
 /obj/structure/reagent_dispensers/New()
 	create_reagents(initial_capacity)
@@ -25,7 +25,7 @@
 		var/reagent_ratio = initial_reagent_types[reagent_type]
 		reagents.add_reagent(reagent_type, reagent_ratio * initial_capacity)
 
-	..()
+	return ..()
 
 /obj/structure/reagent_dispensers/examine(mob/user, distance)
 	. = ..()
@@ -178,7 +178,7 @@
 			usr.visible_message("<span class='notice'>\The [usr] detaches \the [rig] from \the [src].</span>", "<span class='notice'>You detach [rig] from \the [src]</span>")
 			rig.dropInto(usr.loc)
 			rig = null
-			overlays.Cut()
+			cut_overlays()
 
 /obj/structure/reagent_dispensers/fueltank/attackby(obj/item/W as obj, mob/user as mob)
 	src.add_fingerprint(user)
@@ -206,7 +206,7 @@
 			var/icon/test = getFlatIcon(W)
 			test.Shift(NORTH,1)
 			test.Shift(EAST,6)
-			overlays += test
+			add_overlay(test)
 
 	else if(isflamesource(W))
 		if(user.a_intent != I_HURT)

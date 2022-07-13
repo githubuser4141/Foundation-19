@@ -180,8 +180,8 @@
 	icon_state = "beret_white"
 
 /obj/item/clothing/head/beret/solgov/marcom
-	name = "\improper MARSCOM beret"
-	desc = "A red beret with a gold insignia, denoting service in the SCGDF Mars Central Command. For brass who are more inclined towards style than safety."
+	name = "\improper Guard Commander Beret"
+	desc = "A red beret with a gold insignia issued to the highest ranked SD commander of a Foundation site or area.."
 	icon_state = "beret_redgold"
 
 /obj/item/clothing/head/beret/solgov/stratcom
@@ -358,6 +358,11 @@
 /obj/item/clothing/head/helmet/site53/guard/mtf_epsilon/medic
 //	accessories = list(/obj/item/clothing/accessory/armor/helmcover/nt)
 
+/obj/item/clothing/head/beret/scp/alpha
+	name = "Alpha-1 beret"
+	desc = "A dark red beret worn by members of the 'Red Right Hand' MTF unit, it feels kind of heavy for a beret."
+	icon_state = "alpha-beret"
+	item_state = "alpha-beret"
 
 //GOC
 /obj/item/clothing/head/helmet/scp/goc
@@ -368,9 +373,6 @@
 	body_parts_covered = HEAD
 	armor = list(melee = 40, bullet = 90, laser = 50,energy = 25, bomb = 40)
 	flags_inv = HIDEEARS
-
-/obj/item/clothing/head/beret/scp
-	icon = 'icons/obj/clothing/hats.dmi'
 
 /obj/item/clothing/head/beret/scp/goc
 	name = "GOC beret"

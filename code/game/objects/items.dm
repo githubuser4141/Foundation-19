@@ -447,6 +447,19 @@ var/list/global/slot_flags_enumeration = list(
 					allow = 1
 			if(!allow)
 				return 0
+
+		if(slot_in_belt) //used entirely for equipping spawned mobs or at round start
+			var/allow = 0
+			if(H.belt && istype(H.belt, /obj/item/storage/belt))
+				var/obj/item/storage/belt/B = H.belt
+				if(B.can_be_inserted(src,M,1))
+					allow = 1
+				if(B.attackby(src, H)) //attempt to holster if we can't otherwise put the item in the belt
+					allow = 1
+			if(!allow)
+				return 0
+
+
 		if(slot_tie)
 			if((!H.w_uniform && (slot_w_uniform in mob_equip)) && (!H.wear_suit && (slot_wear_suit in mob_equip)))
 				if(!disable_warning)
@@ -622,7 +635,7 @@ var/list/global/slot_flags_enumeration = list(
 /obj/item/clean_blood()
 	. = ..()
 	if(blood_overlay)
-		overlays.Remove(blood_overlay)
+		cut_overlay(blood_overlay)
 	if(istype(src, /obj/item/clothing/gloves))
 		var/obj/item/clothing/gloves/G = src
 		G.transfer_blood = 0
@@ -649,7 +662,7 @@ var/list/global/slot_flags_enumeration = list(
 	//apply the blood-splatter overlay if it isn't already in there
 	if(!blood_DNA.len)
 		blood_overlay.color = blood_color
-		overlays += blood_overlay
+		add_overlay(blood_overlay)
 
 	//if this blood isn't already in the list, add it
 	if(istype(M))
@@ -682,7 +695,7 @@ GLOBAL_LIST_EMPTY(blood_overlay_cache)
 	set category = "Object"
 
 	var/obj/item/I = get_active_hand()
-	if(I && I.simulated)
+	if(I?.simulated)
 		I.showoff(src)
 
 /*

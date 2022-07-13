@@ -1,4 +1,3 @@
-//sculpture
 //SCP-096, nothing more need be said
 /mob/living/simple_animal/hostile/scp096
 	name = "???"
@@ -12,10 +11,12 @@
 	response_help  = "touches the"
 	response_disarm = "pushes the"
 	response_harm   = "hits the"
+	anomalytype = SCP_096
+	status_flags = NO_ANTAG
+
 
 	health = 600
 	maxHealth = 600
-	move_to_delay = 2
 
 	var/murder_sound = list('sound/voice/096-kill.ogg')
 	var/scare_sound = list('sound/scp/scare1.ogg','sound/scp/scare2.ogg','sound/scp/scare3.ogg','sound/scp/scare4.ogg')	//Boo
@@ -24,6 +25,7 @@
 	var/obj/machinery/atmospherics/unary/vent_pump/entry_vent //Graciously stolen from spider code
 
 	var/list/kill_list = list() //list of people this guy is about to murder
+	var/list/target_blacklist = list(/mob/living/carbon/human/scp343) //List of mob types exempt from 049s targetting.
 	var/list/examine_urge_list = list() //tracks urge to examine
 	var/list/examine_urge_values = list()
 	var/target //current dude this guy is targeting
@@ -41,6 +43,11 @@
 /datum/say_list/scp096
 	emote_hear = list("makes a faint groaning sound")
 	emote_see = list("shuffles around aimlessly", "shivers")
+
+/mob/living/simple_animal/hostile/scp096/Destroy()
+	kill_list = null
+	examine_urge_list = null
+	return ..()
 
 /mob/living/simple_animal/hostile/scp096/Life()
 	if(hibernate)
@@ -83,13 +90,13 @@
 
 //Check if any carbon mob can see us
 /mob/living/simple_animal/hostile/scp096/proc/check_los()
-
 	for(var/mob/living/carbon/human/H in viewers(src, null))
 		if(H in kill_list)
 			continue
-		if(H.stat || H.equipment_tint_total == 3)
+		if(H.stat || H.equipment_tint_total == TINT_BLIND)
 			continue
-
+		if(H.type in target_blacklist)
+			continue
 		var/observed = 0
 		var/eye_contact = 0
 
@@ -189,6 +196,26 @@
 		return
 	..()
 
+/mob/living/simple_animal/hostile/scp096/proc/specialexamine(var/userguy) //Snowflaked.
+	if (istype(userguy, /mob/living/carbon))
+		if (!(userguy in kill_list))
+			to_chat(userguy, target_desc_1)
+			kill_list += userguy
+			if(userguy)
+				CALLBACK(addtimer( to_chat(userguy, "<span class='alert'>That was a mistake. Run</span>"), 20 SECONDS))
+			if(userguy)
+				CALLBACK(addtimer( to_chat(userguy, "<span class='danger'>RUN</span>"), 30 SECONDS))
+		else
+			to_chat(userguy, target_desc_2)
+		if(will_scream)
+			if(!buckled) dir = 2
+			visible_message("<span class='danger'>[src] SCREAMS!</span>")
+			playsound(get_turf(src), 'sound/voice/096-rage.ogg', 100)
+			screaming = 1
+			will_scream = 0
+			spawn(290)
+				screaming = 0
+		return
 
 /mob/living/simple_animal/hostile/scp096/proc/handle_target(var/mob/living/carbon/target)
 
@@ -262,7 +289,7 @@
 					dir = get_dir(src, target)
 					next_turf = get_step(src, get_dir(next_turf,target))
 			limit--
-			sleep(move_to_delay + round(staggered/8))
+			sleep(2 + round(staggered/8))
 		chasing = 0
 
 /mob/living/simple_animal/hostile/scp096/proc/is_different_level(var/turf/target_turf)
@@ -293,7 +320,7 @@
 
 /mob/living/simple_animal/hostile/scp096/proc/murder(var/mob/living/T)
 
-	if(T)
+	if(T in kill_list)
 		T.loc = src.loc
 		visible_message("<span class='danger'>[src] grabs [T]!</span>")
 		dir = 2
@@ -441,9 +468,9 @@
 /mob/living/simple_animal/hostile/scp096/ex_act(var/severity)
 	var/damage = 0
 	switch (severity)
-		if (1.0)
+		if(1.0)
 			damage = 500
-		if (2.0)
+		if(2.0)
 			damage = 60
 		if(3.0)
 			damage = 30

@@ -207,7 +207,7 @@ var/global/datum/controller/gameticker/ticker
 				switch(M.z)
 					if(0)	//inside a crate or something
 						var/turf/T = get_turf(M)
-						if(T && T.z in GLOB.using_map.station_levels)				//we don't use M.death(0) because it calls a for(/mob) loop and
+						if(T?.z in GLOB.using_map.station_levels)				//we don't use M.death(0) because it calls a for(/mob) loop and
 							M.health = 0
 							M.set_stat(DEAD)
 					if(1)	//on a z-level 1 turf.
@@ -279,7 +279,7 @@ var/global/datum/controller/gameticker/ticker
 	proc/create_characters()
 		for(var/mob/new_player/player in GLOB.player_list)
 			if(player && player.ready && player.mind)
-				if(player.mind.assigned_role=="AI")
+				if(player.mind.assigned_role=="AIC")
 					player.close_spawn_windows()
 					player.AIize()
 				else if(!player.mind.assigned_role)

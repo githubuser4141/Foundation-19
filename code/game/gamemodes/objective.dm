@@ -99,7 +99,7 @@ var/global/list/all_objectives = list()
 /datum/objective/anti_revolution/demote/find_target()
 	..()
 	if(target && target.current)
-		explanation_text = "[target.current.real_name], the [target.assigned_role]  has been classified as harmful to [GLOB.using_map.company_name]'s goals. Demote \him[target.current] to assistant."
+		explanation_text = "[target.current.real_name], the [target.assigned_role]  has been classified as harmful to [GLOB.using_map.company_name]'s goals. Demote \him[target.current] to Class D."
 	else
 		explanation_text = "Free Objective"
 	return target
@@ -107,7 +107,7 @@ var/global/list/all_objectives = list()
 /datum/objective/anti_revolution/demote/find_target_by_role(role, role_type = 0)
 	..(role, role_type)
 	if(target && target.current)
-		explanation_text = "[target.current.real_name], the [!role_type ? target.assigned_role : target.special_role] has been classified as harmful to [GLOB.using_map.company_name]'s goals. Demote \him[target.current] to assistant."
+		explanation_text = "[target.current.real_name], the [!role_type ? target.assigned_role : target.special_role] has been classified as harmful to [GLOB.using_map.company_name]'s goals. Demote \him[target.current] to Class D."
 	else
 		explanation_text = "Free Objective"
 	return target
@@ -286,11 +286,10 @@ var/global/list/all_objectives = list()
 
 // RnD progress download //
 
-/datum/objective/download
-	proc/gen_amount_goal()
-		target_amount = rand(10,20)
-		explanation_text = "Download [target_amount] research levels."
-		return target_amount
+/datum/objective/download/proc/gen_amount_goal()
+	target_amount = rand(10,20)
+	explanation_text = "Download [target_amount] research levels."
+	return target_amount
 
 // Capture //
 

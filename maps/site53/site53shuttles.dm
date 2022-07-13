@@ -8,7 +8,7 @@
 /datum/shuttle/autodock/ferry/escape_pod/torchpod/New()
 	name = "Escape Pod [number]"
 	dock_target = "escape_pod_[number]"
-	arming_controller = "escape_pod_[number]_berth"
+	arming_controller = "escape_pod_[number]"
 	waypoint_station = "escape_pod_[number]_start"
 	landmark_transition = "escape_pod_[number]_internim"
 	waypoint_offsite = "escape_pod_[number]_out"
@@ -73,17 +73,26 @@
 	name = "In transit"
 	landmark_tag = "nav_engineering_transition"
 
+/datum/shuttle/autodock/ferry/heli
+	name = "Helicopter"
+	sound_takeoff = 'sound/effects/helicopter.ogg'
+	warmup_time = 14
+	move_time = 39
+
 /datum/shuttle/autodock/ferry/heli/mtf
 	name = "MTF Helicopter"
-	warmup_time = 40
+	sound_takeoff = 'sound/effects/helicopter.ogg'
+	warmup_time = 14
 	shuttle_area = list(/area/site53/tram/mtf)
 	waypoint_station = "nav_mtf_start"
+	landmark_transition = "nav_mtf_transition"
 	waypoint_offsite = "nav_mtf_out"
+	move_time = 39
 
 /obj/effect/shuttle_landmark/heli/mtf/start
 	name = "MTF Base"
 	landmark_tag = "nav_mtf_start"
-	base_turf = /turf/simulated/floor/tiled/dark
+	base_turf = /turf/unsimulated/floor/reinforced
 
 /obj/effect/shuttle_landmark/heli/mtf/out
 	name = "Site 53"
@@ -94,6 +103,8 @@
 /obj/effect/shuttle_landmark/heli/mtf
 	name = "In transit"
 	landmark_tag = "nav_mtf_transition"
+	base_turf = /turf/unsimulated/floor/plating
+	base_area = /area/site53/surface/surface
 
 /datum/shuttle/autodock/ferry/hcz
 	name = "Heavy Containment Tram"
@@ -145,6 +156,7 @@
 	name = "Chaos Base"
 	landmark_tag = "car1_start"
 	base_turf = /turf/simulated/floor/exoplanet/snow
+	base_area = /area/site53/surface/surface
 
 /obj/effect/shuttle_landmark/chaos1/out
 	name = "Site 53"
@@ -152,23 +164,25 @@
 	base_turf = /turf/simulated/floor/exoplanet/snow
 	base_area = /area/site53/surface/surface
 
-/datum/shuttle/autodock/ferry/chaos2
-	name = "Chaos Car 2"
+/datum/shuttle/autodock/ferry/goc1
+	name = "GOC Car 1"
 	warmup_time = 20
-	shuttle_area = list(/area/site53/tram/car2)
-	waypoint_station = "car2_start"
-	waypoint_offsite = "car2_out"
+	shuttle_area = list(/area/site53/tram/goc1)
+	waypoint_station = "goc1_start"
+	waypoint_offsite = "goc1_out"
 
 
-/obj/effect/shuttle_landmark/chaos2/start
-	name = "Chaos Base"
-	landmark_tag = "car2_start"
+/obj/effect/shuttle_landmark/goc1/start
+	name = "GOC Base"
+	landmark_tag = "goc1_start"
 	base_turf = /turf/simulated/floor/exoplanet/snow
+	base_area = /area/site53/surface/surface
 
-/obj/effect/shuttle_landmark/chaos2/out
+/obj/effect/shuttle_landmark/goc1/out
 	name = "Site 53"
-	landmark_tag = "car2_out"
+	landmark_tag = "goc1_out"
 	base_turf = /turf/simulated/floor/exoplanet/snow
+	base_area = /area/site53/surface/surface
 /*
 /datum/shuttle/autodock/multi/antag/rescue
 	name = "Rescue"
@@ -220,7 +234,7 @@
 	landmark_tag = "nav_ert_deck1"
 
 //Merc
-
+/* -- dont need this, but commenting out just incase it breaks shit
 /datum/shuttle/autodock/multi/antag/mercenary
 	name = "Mercenary"
 	warmup_time = 0
@@ -242,11 +256,11 @@
 	name = "Mercenary Base"
 	landmark_tag = "nav_merc_start"
 	docking_controller = "merc_base"
-
+*/
 /obj/effect/shuttle_landmark/merc/internim
 	name = "In transit"
 	landmark_tag = "nav_merc_transition"
-
+/*
 /obj/effect/shuttle_landmark/merc/dock
 	name = "Docking Port"
 	landmark_tag = "nav_merc_dock"
@@ -256,7 +270,7 @@
 	name = "Site53"
 	landmark_tag = "nav_merc_deck1"
 	base_area = /area/site53/surface/surface
-
+*/
 //
 
 /datum/shuttle/autodock/ferry/supply/drone
@@ -270,6 +284,7 @@
 /obj/effect/shuttle_landmark/supply/centcom
 	name = "Offsite"
 	landmark_tag = "nav_cargo_start"
+	base_turf = /turf/unsimulated/floor/reinforced
 
 /obj/effect/shuttle_landmark/supply/station
 	name = "Hangar"

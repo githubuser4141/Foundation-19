@@ -5,7 +5,7 @@
 	desc = "An identification card issued to personnel aboard the SEV Torch."
 	icon_state = "id"
 	item_state = "card-id"
-	job_access_type = /datum/job/assistant
+	job_access_type = /datum/job/classd
 
 /obj/item/card/id/torch/silver
 	desc = "A silver identification card belonging to heads of staff."
@@ -41,7 +41,7 @@
 /obj/item/card/id/torch/contractor
 	desc = "An identification card issued to private contractors aboard the SEV Torch."
 	icon_state = "civ"
-	job_access_type = /datum/job/assistant
+	job_access_type = /datum/job/classd
 
 
 /obj/item/card/id/torch/silver/medical
@@ -103,7 +103,7 @@
 
 
 /obj/item/card/id/torch/crew/service //unused
-	job_access_type = /datum/job/assistant
+	job_access_type = /datum/job/classd
 
 /obj/item/card/id/torch/crew/service/janitor
 	job_access_type = /datum/job/janitor
@@ -112,7 +112,7 @@
 	job_access_type = /datum/job/chef
 
 /obj/item/card/id/torch/contractor/service //unused
-	job_access_type = /datum/job/assistant
+	job_access_type = /datum/job/classd
 
 /obj/item/card/id/torch/contractor/service/bartender
 	job_access_type = /datum/job/bartender
@@ -138,7 +138,7 @@
 /obj/item/card/id/torch/passenger
 	desc = "A card issued to passengers and off-duty personnel aboard the SEV Torch."
 	icon_state = "id"
-	job_access_type = /datum/job/assistant
+	job_access_type = /datum/job/classd
 
 /obj/item/card/id/torch/passenger/research
 	desc = "A card issued to NanoTrasen personnel aboard the SEV Torch."
@@ -404,7 +404,7 @@
 	desc = "A black ID. Looks like the person wearing this won't give it up easy."
 	icon_state = "adminlvl3"
 	item_state = "Admin_ID"
-//	job_access_type = /datum/job/rd
+	job_access_type = /datum/job/goirep
 
 /obj/item/card/id/adminlvl4
 	name = " administration ID"
@@ -553,3 +553,18 @@
 	name = " Janitorial Assignment Card"
 	desc = "A dark blue ID. Looks important. The person wearing it not so much."
 	access = access_dclassjanitorial
+
+
+/obj/item/card/id/officeworker
+	name = "Office Staff ID"
+	desc = "A low level ID issued to office workers."
+	icon_state = "adminlvl1"
+	item_state = "Admin_ID"
+	job_access_type = /datum/job/officeworker
+
+/obj/item/card/id/classd
+	name = "Class-D ID"
+	desc = "An ID card issued to Class-D Foundation personnel."
+	icon_state = "classd"
+	item_state = "Admin_ID"
+	job_access_type = /datum/job/officeworker

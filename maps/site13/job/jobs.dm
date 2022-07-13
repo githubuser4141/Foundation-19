@@ -6,7 +6,7 @@
 /datum/map/site13
 /datum/map/site13/setup_map()
 
-/datum/job/assistant
+/datum/job/classd
 	title = "Class D"
 	department = "Civilian"
 	total_positions = -1
@@ -14,13 +14,13 @@
 	supervisors = "Foundation Personnel"
 	selection_color = "#E55700"
 	economic_modifier = 1
-	access = list()			//See /datum/job/assistant/get_access()
-	minimal_access = list()	//See /datum/job/assistant/get_access()
+	access = list()			//See /datum/job/classd/get_access()
+	minimal_access = list()	//See /datum/job/classd/get_access()
 	outfit_type = /decl/hierarchy/outfit/job/site90/crew/civ/classd
 	allowed_ranks = list(/datum/mil_rank/civ/classd)
 	var/static/list/used_numbers = list()
 
-/datum/job/assistant/equip(var/mob/living/carbon/human/H)
+/datum/job/classd/equip(var/mob/living/carbon/human/H)
 	..()
 	var/r = rand(100,9000)
 	while (used_numbers.Find(r))
@@ -143,10 +143,8 @@
 	department_flag = SEC
 	supervisors = "the Security Commander"
 	economic_modifier = 4
-	alt_titles = null
 	minimal_player_age = 7
 	ideal_character_age = 30
-	alt_titles = null
 	outfit_type = /decl/hierarchy/outfit/job/site90/crew/security/cellguardlieutenant
 	allowed_branches = list(
 		/datum/mil_branch/security
@@ -168,10 +166,8 @@
 	spawn_positions = 4
 	supervisors = "the Security Commander"
 	economic_modifier = 4
-	alt_titles = null
 	minimal_player_age = 5
 	ideal_character_age = 23
-	alt_titles = null
 	outfit_type = /decl/hierarchy/outfit/job/site90/crew/security/brigofficer
 	allowed_branches = list(
 		/datum/mil_branch/security
@@ -222,7 +218,6 @@
 	alt_titles = list("Senior Agent")
 	minimal_player_age = 10
 	ideal_character_age = 45
-	alt_titles = null
 	outfit_type = /decl/hierarchy/outfit/job/site90/crew/security/ltofficer
 	allowed_branches = list(
 		/datum/mil_branch/security
@@ -249,7 +244,6 @@
 	alt_titles = list("Agent")
 	minimal_player_age = 5
 	ideal_character_age = 30
-	alt_titles = null
 	outfit_type = /decl/hierarchy/outfit/job/site90/crew/security/ncoofficer
 	allowed_branches = list(
 		/datum/mil_branch/security
@@ -276,7 +270,6 @@
 	alt_titles = list("Junior Agent")
 	minimal_player_age = 0
 	ideal_character_age = 25
-	alt_titles = null
 	outfit_type = /decl/hierarchy/outfit/job/site90/crew/security/enlistedofficer
 	allowed_branches = list(
 		/datum/mil_branch/security
@@ -308,7 +301,6 @@
 	alt_titles = list("Junior Researcher")
 	minimal_player_age = 0
 	ideal_character_age = 22
-	alt_titles = null
 	outfit_type = /decl/hierarchy/outfit/job/site90/crew/science/juniorscientist
 	allowed_branches = list(/datum/mil_branch/civilian)
 	allowed_ranks = list(/datum/mil_rank/civ/classc)
@@ -329,7 +321,6 @@
 	alt_titles = list("Researcher")
 	minimal_player_age = 5
 	ideal_character_age = 22
-	alt_titles = null
 	outfit_type = /decl/hierarchy/outfit/job/site90/crew/science/scientist
 	allowed_branches = list(/datum/mil_branch/civilian)
 	allowed_ranks = list(/datum/mil_rank/civ/classc)
@@ -350,7 +341,6 @@
 	alt_titles = list("Senior Researcher")
 	minimal_player_age = 10
 	ideal_character_age = 22
-	alt_titles = null
 	outfit_type = /decl/hierarchy/outfit/job/site90/crew/science/seniorscientist
 	allowed_branches = list(/datum/mil_branch/civilian)
 	allowed_ranks = list(/datum/mil_rank/civ/classb)
@@ -453,7 +443,7 @@
 	department_flag = ENG
 	supervisors = "the Chief Engineer"
 	economic_modifier = 5
-	minimal_player_age = 7
+	minimal_player_age = 18
 	ideal_character_age = 30
 	alt_titles = list(
 		"Senior Maintenance Technician",

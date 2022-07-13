@@ -58,19 +58,20 @@
 
 /obj/machinery/computer/bullet_act(var/obj/item/projectile/Proj)
 	take_damage(Proj.get_structure_damage())
-	..()
+	return ..()
 
 /obj/machinery/computer/attackby(obj/item/I, mob/user)
-	if (isScrewdriver(I) || isWrench(I) || isCrowbar(I))
+	if(isScrewdriver(I) || isWrench(I) || isCrowbar(I))
 		return ..() // handled by construction
-	if (user.a_intent != I_HURT)
+	if(user.a_intent != I_HURT)
 		return ..()
 
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	user.do_attack_animation(src)
 	playsound(src, 'sound/weapons/smash.ogg', 25, 1)
-	take_damage(I.force)
-	..()
+	if(I.force)
+		take_damage(I.force)
+	return ..()
 
 /obj/machinery/computer/proc/take_damage(var/damage)
 	if (health <= 0)
@@ -82,7 +83,7 @@
 		visible_message(SPAN_WARNING("\The [src] breaks!"))
 
 /obj/machinery/computer/on_update_icon()
-	overlays.Cut()
+	cut_overlays()
 	icon = initial(icon)
 	icon_state = initial(icon_state)
 
@@ -93,32 +94,32 @@
 		var/screen = get_component_of_type(/obj/item/stock_parts/console_screen)
 		var/keyboard = get_component_of_type(/obj/item/stock_parts/keyboard)
 		if(screen)
-			overlays += "comp_screen"
+			add_overlay("comp_screen")
 		if(keyboard)
-			overlays += icon_keyboard ? "[icon_keyboard]_off" : "keyboard"
+			add_overlay(icon_keyboard ? "[icon_keyboard]_off" : "keyboard")
 		return
 
 	if(stat & NOPOWER)
 		set_light(0)
 		if(icon_keyboard)
-			overlays += image(icon,"[icon_keyboard]_off", overlay_layer)
+			add_overlay(image(icon,"[icon_keyboard]_off", overlay_layer))
 		return
 	else
 		set_light(light_max_bright_on, light_inner_range_on, light_outer_range_on, 2, light_color)
 
 	if(stat & BROKEN)
-		overlays += image(icon,"[icon_state]_broken", overlay_layer)
+		add_overlay(image(icon,"[icon_state]_broken", overlay_layer))
 	else
-		overlays += get_screen_overlay()
+		add_overlay(get_screen_overlay())
 
-	overlays += get_keyboard_overlay()
+	add_overlay(get_keyboard_overlay())
 
 /obj/machinery/computer/proc/get_screen_overlay()
 	return image(icon,icon_screen, overlay_layer)
 
 /obj/machinery/computer/proc/get_keyboard_overlay()
 	if(icon_keyboard)
-		overlays += image(icon, icon_keyboard, overlay_layer)
+		add_overlay(image(icon, icon_keyboard, overlay_layer))
 
 /obj/machinery/computer/proc/decode(text)
 	// Adds line breaks

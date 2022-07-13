@@ -3,9 +3,6 @@
 	full_name = "Foundation Site 53"
 	path = "site53"
 	flags = MAP_HAS_BRANCH | MAP_HAS_RANK
-
-	lobby_screens = list('icons/lobby.dmi')
-
 	station_levels = list(1,2,3,4)
 	contact_levels = list(1,2,3,4)
 	player_levels = list(1,2,3,4)
@@ -27,7 +24,7 @@
 	company_name  = "SCP Foundation"
 	company_short = "Foundation"
 
-	map_admin_faxes = list("Foundation Central Office")
+	map_admin_faxes = list("Foundation Central Office", "UIU Central Office", "GOC Central Office")
 
 	//These should probably be moved into the evac controller...
 	shuttle_docked_message = "The outbound train is now boarding at the Train Station. It will depart in approximately %ETD%."
@@ -41,7 +38,7 @@
 
 //	evac_controller_type = /datum/evacuation_controller/site
 
-	default_law_type = /datum/ai_laws/solgov
+	default_law_type = /datum/ai_laws/foundation
 	use_overmap = 0
 	num_exoplanets = 0
 	planet_size = list(129,129)
@@ -49,12 +46,30 @@
 	away_site_budget = 3
 
 	id_hud_icons = 'maps/site53/icons/assignment_hud.dmi'
-	lobby_screens = list("title","title2")
+
+	lobby_tracks = list(
+		/decl/audio/track/dieinthedark,
+		/decl/audio/track/perdition,
+		/decl/audio/track/ajoura,
+		/decl/audio/track/days,
+		/decl/audio/track/hie
+	)
 
 	available_cultural_info = list(
 		TAG_HOMEWORLD = list(HOME_SYSTEM_EARTH),
 		TAG_FACTION = list(FACTION_SOL_CENTRAL),
-		TAG_CULTURE = list(CULTURE_HUMAN_EARTH),
+		TAG_CULTURE = list(
+			CULTURE_HUMAN_EARTH,
+			CULTURE_HUMAN_ARABIC,
+			CULTURE_HUMAN_BRITISH,
+			CULTURE_HUMAN_CHINESE,
+			CULTURE_HUMAN_EASTSLAVIC,
+			CULTURE_HUMAN_FRENCH,
+			CULTURE_HUMAN_GERMAN,
+			CULTURE_HUMAN_GOIDELIC,
+			CULTURE_HUMAN_ITALIAN,
+			CULTURE_HUMAN_JAPANESE,
+			CULTURE_HUMAN_LATINAMERICAN),
 		TAG_RELIGION = list(
 			RELIGION_OTHER,
 			RELIGION_JUDAISM,

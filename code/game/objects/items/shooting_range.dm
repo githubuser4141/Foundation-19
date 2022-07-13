@@ -19,7 +19,7 @@
 	if(isWelder(W))
 		var/obj/item/weldingtool/WT = W
 		if(WT.remove_fuel(0, user))
-			overlays.Cut()
+			cut_overlays()
 			bulletholes.Cut()
 			hp = initial(hp)
 			to_chat(usr, "<span class='notice'>You slice off [src]'s uneven chunks of aluminium and scorch marks.</span>")
@@ -102,7 +102,7 @@
 			virtualIcon.DrawBox(null, B.b1x1, B.b1y,  B.b1x2, B.b1y) // horizontal line, left to right
 			virtualIcon.DrawBox(null, B.b2x, B.b2y1,  B.b2x, B.b2y2) // vertical line, top to bottom
 
-		overlays += bmark // add the decal
+		add_overlay(bmark)
 
 		icon = virtualIcon // apply bulletholes over decals
 
@@ -123,21 +123,22 @@
 	var/b2y1 = 0
 	var/b2y2 = 0
 
-	New(var/obj/item/target/Target, var/pixel_x = 0, var/pixel_y = 0)
-		if(!Target) return
+/datum/bullethole/New(var/obj/item/target/Target, var/pixel_x = 0, var/pixel_y = 0)
+	if(!Target)
+		return
 
-		// Randomize the first box
-		b1x1 = pixel_x - pick(1,1,1,1,2,2,3,3,4)
-		b1x2 = pixel_x + pick(1,1,1,1,2,2,3,3,4)
-		b1y = pixel_y
-		if(prob(35))
-			b1y += rand(-4,4)
+	// Randomize the first box
+	b1x1 = pixel_x - pick(1,1,1,1,2,2,3,3,4)
+	b1x2 = pixel_x + pick(1,1,1,1,2,2,3,3,4)
+	b1y = pixel_y
+	if(prob(35))
+		b1y += rand(-4,4)
 
-		// Randomize the second box
-		b2x = pixel_x
-		if(prob(35))
-			b2x += rand(-4,4)
-		b2y1 = pixel_y + pick(1,1,1,1,2,2,3,3,4)
-		b2y2 = pixel_y - pick(1,1,1,1,2,2,3,3,4)
+	// Randomize the second box
+	b2x = pixel_x
+	if(prob(35))
+		b2x += rand(-4,4)
+	b2y1 = pixel_y + pick(1,1,1,1,2,2,3,3,4)
+	b2y2 = pixel_y - pick(1,1,1,1,2,2,3,3,4)
 
-		Target.bulletholes.Add(src)
+	Target.bulletholes.Add(src)

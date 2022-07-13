@@ -719,7 +719,7 @@
 	return req_access
 
 /mob/living/silicon/robot/on_update_icon()
-	overlays.Cut()
+	cut_overlays()
 	if(stat == CONSCIOUS)
 		var/eye_icon_state = "eyes-[module_sprites[icontype]]"
 		if(eye_icon_state in icon_states(icon))
@@ -731,19 +731,19 @@
 				eye_overlay.plane = EFFECTS_ABOVE_LIGHTING_PLANE
 				eye_overlay.layer = EYE_GLOW_LAYER
 				eye_overlays[eye_icon_state] = eye_overlay
-			overlays += eye_overlay
+			add_overlay(eye_overlay)
 
 	if(opened)
 		var/panelprefix = custom_sprite ? src.ckey : "ov"
 		if(wiresexposed)
-			overlays += "[panelprefix]-openpanel +w"
+			add_overlay("[panelprefix]-openpanel +w")
 		else if(cell)
-			overlays += "[panelprefix]-openpanel +c"
+			add_overlay("[panelprefix]-openpanel +c")
 		else
-			overlays += "[panelprefix]-openpanel -c"
+			add_overlay("[panelprefix]-openpanel -c")
 
 	if(module_active && istype(module_active,/obj/item/borg/combat/shield))
-		overlays += "[module_sprites[icontype]]-shield"
+		add_overlay("[module_sprites[icontype]]-shield")
 
 	if(modtype == "Combat")
 		if(module_active && istype(module_active,/obj/item/borg/combat/mobility))
@@ -1062,7 +1062,7 @@
 				log_and_message_admins("emagged cyborg [key_name_admin(src)].  Laws overridden.", src)
 				clear_supplied_laws()
 				clear_inherent_laws()
-				laws = new /datum/ai_laws/syndicate_override
+				laws = new /datum/ai_laws/insurgency_override
 				var/time = time2text(world.realtime,"hh:mm:ss")
 				GLOB.lawchanges.Add("[time] <B>:</B> [user.name]([user.key]) emagged [name]([key])")
 				set_zeroth_law("Only [user.real_name] and people \he designates as being such are operatives.")

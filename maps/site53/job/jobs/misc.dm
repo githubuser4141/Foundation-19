@@ -1,4 +1,4 @@
-/datum/job/assistant
+/datum/job/classd
 	title = "Class D"
 	department = "Civilian"
 	selection_color = "#E55700"
@@ -6,8 +6,8 @@
 	total_positions = 999
 	spawn_positions = 999
 	//duties = "<big><b>As a Class D Foundation Employee, you are most likely a former convict who faced a life sentence or the death penalty. You are extremely grateful to have been offered the chance to participate in the Foundation's rapid rehabilitation program, at a facility which aims to release you into the free world in just 30 days.<br> Find a way to show you're ready to re-integrate into society: work in mining, botany, the kitchens, or volunteer yourself as a participant in scientific studies.<br> <span style = 'color:red'>REMEMBER!</span> Rioting as Class D has been prohibited without staff approval, under rule 15. <br>IMPORTANT! Do not try to break out of your cell at game start. You will break your only way out!</b></big>"
-	access = list()			//See /datum/job/assistant/get_access()
-	minimal_access = list()	//See /datum/job/assistant/get_access()
+	access = list()			//See /datum/job/classd/get_access()
+	minimal_access = list()	//See /datum/job/classd/get_access()
 	outfit_type = /decl/hierarchy/outfit/job/site90/crew/civ/classd
 	allowed_branches = list(/datum/mil_branch/civilian)
 	allowed_ranks = list(/datum/mil_rank/civ/classd)
@@ -17,7 +17,7 @@
 	max_skill = list(   SKILL_COMBAT      = SKILL_TRAINED,
 	                    SKILL_WEAPONS     = SKILL_TRAINED)
 
-/datum/job/assistant/equip(mob/living/carbon/human/H)
+/datum/job/classd/equip(mob/living/carbon/human/H)
 	..()
 	var/r = rand(100,9000)
 	while (used_numbers.Find(r))
@@ -28,6 +28,44 @@
 	if(istype(H.wear_id, /obj/item/card/id))
 		var/obj/item/card/id/ID = H.wear_id
 		ID.registered_name = "D-[used_numbers[used_numbers.len]]"
+
+
+
+//Office Worker
+
+/datum/job/officeworker
+	title = "Office Worker"
+	department = "Civilian"
+	department_flag = CIV
+	total_positions = 100
+	spawn_positions = 100
+	minimal_player_age = 10
+	//supervisors = "the Archivist and administrative staff"
+	//duties = "<big><b>You are a low level pen pusher of the SCP Foundation. Your direct supervisor is the Archivist but you may also answer to the O5 and Ethics Committee Representative. Write reports, assist researchers and generally be a pain in the ass to everyone around you."
+	economic_power = 2
+	minimal_player_age = 5
+	ideal_character_age = 30
+	outfit_type = /decl/hierarchy/outfit/job/site90/crew/civ/officeworker
+	allowed_branches = list(
+		/datum/mil_branch/civilian
+	)
+	allowed_ranks = list(
+		/datum/mil_rank/civ/classc
+	)
+	hud_icon = "hudassistant"
+
+	access = list(
+		access_civ_comms,
+		access_adminlvl1,
+		access_sciencelvl1,
+		access_sciencelvl2,
+		access_medicallvl1,
+		access_medicallvl2,
+
+	)
+	minimal_access = list()
+
+
 
 //LOGISTICS
 
@@ -43,17 +81,9 @@
 	minimal_player_age = 7
 	ideal_character_age = 35
 	outfit_type = /decl/hierarchy/outfit/job/site90/crew/command/logisticsofficer
-	allowed_branches = list(
-		/datum/mil_branch/security,
-	)
 	hud_icon = "huddeckchief"
-	allowed_ranks = list(
-		/datum/mil_rank/security/e7,
-		/datum/mil_rank/security/e8,
-		/datum/mil_rank/security/e9,
-		/datum/mil_rank/security/w1
-
-	)
+	allowed_branches = list(/datum/mil_branch/civilian)
+	allowed_ranks = list(/datum/mil_rank/civ/classb)
 
 	access = list(
 		access_adminlvl1,
@@ -92,17 +122,8 @@
 	minimal_player_age = 3
 	ideal_character_age = 24
 	outfit_type = /decl/hierarchy/outfit/job/site90/crew/command/logisticspecialist
-	allowed_branches = list(
-		/datum/mil_branch/security
-	)
-	allowed_ranks = list(
-	/datum/mil_rank/security/e1,
-	/datum/mil_rank/security/e2,
-	/datum/mil_rank/security/e3,
-	/datum/mil_rank/security/e4,
-	/datum/mil_rank/security/e5,
-	/datum/mil_rank/security/e6
-	)
+	allowed_branches = list(/datum/mil_branch/civilian)
+	allowed_ranks = list(/datum/mil_rank/civ/classc)
 	hud_icon = "huddecktechnician"
 
 	access = list(
@@ -235,7 +256,6 @@
 	economic_power = 4
 	minimal_player_age = 5
 	ideal_character_age = 30
-	alt_titles = null
 	outfit_type = /decl/hierarchy/outfit/job/site90/crew/civ/archivist
 	allowed_branches = list(
 		/datum/mil_branch/civilian
@@ -247,12 +267,26 @@
 
 	access = list(
 		access_civ_comms,
+		access_sci_comms,
+		access_med_comms,
 		access_adminlvl1,
 		access_adminlvl2,
 		access_adminlvl3,
+		access_adminlvl4,
+		access_keyauth,
+		access_research,
 		access_sciencelvl1,
 		access_sciencelvl2,
 		access_sciencelvl3,
-		access_sciencelvl4
+		access_sciencelvl4,
+		access_medicallvl1,
+		access_medicallvl2,
+		access_medicallvl3,
+		access_medicallvl4
 	)
 	minimal_access = list()
+
+
+
+
+

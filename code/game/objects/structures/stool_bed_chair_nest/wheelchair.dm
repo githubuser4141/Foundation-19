@@ -3,7 +3,7 @@
 	desc = "Now we're getting somewhere."
 	icon_state = "wheelchair"
 	anchored = FALSE
-	movement_handlers = list(/datum/movement_handler/deny_multiz, /datum/movement_handler/delay = list(2), /datum/movement_handler/move_relay_self)
+	movement_handlers = list(/datum/movement_handler/deny_multiz, /datum/movement_handler/delay = list(5), /datum/movement_handler/move_relay_self)
 	var/driving = 0
 	var/mob/living/pulling = null
 	var/bloodiness
@@ -13,10 +13,10 @@
 
 /obj/structure/bed/chair/wheelchair/set_dir()
 	..()
-	overlays.Cut()
+	cut_overlays()
 	var/image/O = image(icon = 'icons/obj/furniture.dmi', icon_state = "w_overlay", dir = src.dir)
 	O.layer = ABOVE_HUMAN_LAYER
-	overlays += O
+	add_overlay(O)
 	if(buckled_mob)
 		buckled_mob.set_dir(dir)
 

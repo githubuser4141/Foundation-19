@@ -338,7 +338,7 @@ SUBSYSTEM_DEF(jobs)
 			give_random_job(player, mode)
 	// For those who wanted to be assistant if their preferences were filled, here you go.
 	for(var/mob/new_player/player in unassigned_roundstart)
-		if(player.client.prefs.alternate_option == BE_ASSISTANT)
+		if(player.client.prefs.alternate_option == BE_CLASS_D)
 			var/datum/job/ass = DEFAULT_JOB_TYPE
 			if((GLOB.using_map.flags & MAP_HAS_BRANCH) && player.client.prefs.branches[initial(ass.title)])
 				var/datum/mil_branch/branch = mil_branches.get_branch(player.client.prefs.branches[initial(ass.title)])
@@ -348,7 +348,6 @@ SUBSYSTEM_DEF(jobs)
 	for(var/mob/new_player/player in unassigned_roundstart)
 		if(player.client.prefs.alternate_option == RETURN_TO_LOBBY)
 			player.ready = 0
-			player.new_player_panel()
 			unassigned_roundstart -= player
 	return TRUE
 
@@ -379,6 +378,10 @@ SUBSYSTEM_DEF(jobs)
 						permitted = 1
 				else
 					permitted = 1
+
+				if(permitted && G.denied_roles)
+					if(job.type in G.denied_roles)
+						permitted = 0
 
 				if(permitted)
 					if(G.allowed_roles)
@@ -443,7 +446,7 @@ SUBSYSTEM_DEF(jobs)
 		job.setup_account(H)
 
 		// EMAIL GENERATION
-		if(rank != "Robot" && rank != "AI")		//These guys get their emails later.
+		if(rank != "Robot" && rank != "AIC")		//These guys get their emails later.
 			var/domain
 			var/addr = H.real_name
 			var/pass

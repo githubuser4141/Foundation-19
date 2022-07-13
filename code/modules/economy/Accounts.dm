@@ -82,7 +82,7 @@
 		if(!R.stamped)
 			R.stamped = new
 		R.stamped += /obj/item/stamp
-		R.overlays += stampoverlay
+		R.add_overlay(stampoverlay)
 		R.stamps += "<HR><i>This paper has been stamped by the Accounts Database.</i>"
 
 	//add the account
@@ -94,7 +94,7 @@
 //this returns the first account datum that matches the supplied accnum/pin combination, it returns null if the combination did not match any account
 /proc/attempt_account_access(var/attempt_account_number, var/attempt_pin_number, var/security_level_passed = 0)
 	var/datum/money_account/D = get_account(attempt_account_number)
-	if(D && D.security_level <= security_level_passed && (!D.security_level || D.remote_access_pin == attempt_pin_number) )
+	if(D?.security_level <= security_level_passed && (!D.security_level || D.remote_access_pin == attempt_pin_number) )
 		return D
 
 /proc/get_account(var/account_number)

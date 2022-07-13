@@ -48,7 +48,6 @@
 
 //GOC
 /obj/item/clothing/suit/armor/goc
-	icon = 'icons/obj/clothing/suits.dmi'
 	name = "GOC armored vest"
 	desc = "A standard issue lightweight armored vest given to soldiers of the GOC."
 	icon_state = "goc-vest"
@@ -65,7 +64,7 @@
 
 /obj/item/reagent_containers/pill/scp500/New()
 	. = ..()
-	reagents.add_reagent(/datum/reagent/adminordrazine, 50)
+	reagents.add_reagent(/datum/reagent/adminordrazine, 1)
 
 /obj/item/storage/fancy/cigarettes/bluelady
 	name = "pack of SCP-013s"

@@ -134,47 +134,47 @@
 	center_of_mass = "x=15;y=10"
 	matter = list(MATERIAL_GLASS = 500)
 
-	New()
-		..()
-		desc += " It can hold up to [volume] units."
+/obj/item/reagent_containers/glass/beaker/New()
+	..()
+	desc += " It can hold up to [volume] units."
 
-	on_reagent_change()
-		update_icon()
-
-	pickup(mob/user)
-		..()
-		update_icon()
-
-	dropped(mob/user)
-		..()
-		update_icon()
-
-	attack_hand()
-		..()
-		update_icon()
-
+/obj/item/reagent_containers/glass/beaker/on_reagent_change()
 	update_icon()
-		overlays.Cut()
 
-		if(reagents.total_volume)
-			var/image/filling = image('icons/obj/reagentfillings.dmi', src, "[icon_state]10")
+/obj/item/reagent_containers/glass/beaker/pickup(mob/user)
+	..()
+	update_icon()
 
-			var/percent = round((reagents.total_volume / volume) * 100)
-			switch(percent)
-				if(0 to 9)		filling.icon_state = "[icon_state]-10"
-				if(10 to 24) 	filling.icon_state = "[icon_state]10"
-				if(25 to 49)	filling.icon_state = "[icon_state]25"
-				if(50 to 74)	filling.icon_state = "[icon_state]50"
-				if(75 to 79)	filling.icon_state = "[icon_state]75"
-				if(80 to 90)	filling.icon_state = "[icon_state]80"
-				if(91 to INFINITY)	filling.icon_state = "[icon_state]100"
+/obj/item/reagent_containers/glass/beaker/dropped(mob/user)
+	..()
+	update_icon()
 
-			filling.color = reagents.get_color()
-			overlays += filling
+/obj/item/reagent_containers/glass/beaker/attack_hand()
+	..()
+	update_icon()
 
-		if (!is_open_container())
-			var/image/lid = image(icon, src, "lid_[initial(icon_state)]")
-			overlays += lid
+/obj/item/reagent_containers/glass/beaker/update_icon()
+	cut_overlays()
+
+	if(reagents.total_volume)
+		var/image/filling = image('icons/obj/reagentfillings.dmi', src, "[icon_state]10")
+
+		var/percent = round((reagents.total_volume / volume) * 100)
+		switch(percent)
+			if(0 to 9)		filling.icon_state = "[icon_state]-10"
+			if(10 to 24) 	filling.icon_state = "[icon_state]10"
+			if(25 to 49)	filling.icon_state = "[icon_state]25"
+			if(50 to 74)	filling.icon_state = "[icon_state]50"
+			if(75 to 79)	filling.icon_state = "[icon_state]75"
+			if(80 to 90)	filling.icon_state = "[icon_state]80"
+			if(91 to INFINITY)	filling.icon_state = "[icon_state]100"
+
+		filling.color = reagents.get_color()
+		add_overlay(filling)
+
+	if (!is_open_container())
+		var/image/lid = image(icon, src, "lid_[initial(icon_state)]")
+		add_overlay(lid)
 
 /obj/item/reagent_containers/glass/beaker/large
 	name = "large beaker"
@@ -233,6 +233,15 @@
 	possible_transfer_amounts = "5;10;15;30"
 	atom_flags = ATOM_FLAG_OPEN_CONTAINER
 
+/obj/item/reagent_containers/glass/beaker/vial/scp008
+	name = "SCP-008"
+	desc = "A small glass vial, this one looks rather... violent?"
+
+/obj/item/reagent_containers/glass/beaker/vial/scp008/New()
+	..()
+	reagents.add_reagent(/datum/reagent/zombie, 30)
+	update_icon()
+
 /obj/item/reagent_containers/glass/beaker/insulated
 	name = "insulated beaker"
 	desc = "A glass beaker surrounded with black insulation."
@@ -250,17 +259,15 @@
 	matter = list(MATERIAL_GLASS = 5000, MATERIAL_PLASTIC = 2500)
 	volume = 120
 
-/obj/item/reagent_containers/glass/beaker/cryoxadone
-	New()
-		..()
-		reagents.add_reagent(/datum/reagent/medicine/cryogenic/cryoxadone, 30)
-		update_icon()
+/obj/item/reagent_containers/glass/beaker/cryoxadone/New()
+	..()
+	reagents.add_reagent(/datum/reagent/medicine/cryogenic/cryoxadone, 30)
+	update_icon()
 
-/obj/item/reagent_containers/glass/beaker/sulphuric
-	New()
-		..()
-		reagents.add_reagent(/datum/reagent/acid/sulphuric, 60)
-		update_icon()
+/obj/item/reagent_containers/glass/beaker/sulphuric/New()
+	..()
+	reagents.add_reagent(/datum/reagent/acid/sulphuric, 60)
+	update_icon()
 
 /obj/item/reagent_containers/glass/bucket
 	name = "bucket"
@@ -298,14 +305,14 @@
 		return ..()
 
 /obj/item/reagent_containers/glass/bucket/on_update_icon()
-	overlays.Cut()
+	cut_overlays()
 	if (!is_open_container())
 		var/image/lid = image(icon, src, "lid_[initial(icon_state)]")
-		overlays += lid
+		add_overlay(lid)
 	else if(reagents.total_volume && round((reagents.total_volume / volume) * 100) > 80)
 		var/image/filling = image('icons/obj/reagentfillings.dmi', src, "bucket")
 		filling.color = reagents.get_color()
-		overlays += filling
+		add_overlay(filling)
 
 /*
 /obj/item/reagent_containers/glass/blender_jug

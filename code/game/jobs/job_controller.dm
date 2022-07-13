@@ -1,7 +1,7 @@
 var/global/datum/controller/occupations/job_master
 
 #define GET_RANDOM_JOB 0
-#define BE_ASSISTANT 1
+#define BE_CLASS_D 1
 #define RETURN_TO_LOBBY 2
 
 /datum/controller/occupations
@@ -21,7 +21,7 @@ var/global/datum/controller/occupations/job_master
 		occupations = list()
 		occupations_by_type = list()
 		occupations_by_title = list()
-		var/list/all_jobs = list(/datum/job/assistant) | GLOB.using_map.allowed_jobs
+		var/list/all_jobs = list(/datum/job/classd) | GLOB.using_map.allowed_jobs
 		if(!all_jobs.len)
 			log_error("<span class='warning'>Error setting up jobs, no job datums found!</span>")
 			return 0
@@ -246,7 +246,7 @@ var/global/datum/controller/occupations/job_master
 		//Holder for Triumvirate is stored in the ticker, this just processes it
 		if(ticker && ticker.triai)
 			for(var/datum/job/A in occupations)
-				if(A.title == "AI")
+				if(A.title == "AIC")
 					A.spawn_positions = 3
 					break
 
@@ -332,7 +332,7 @@ var/global/datum/controller/occupations/job_master
 
 		// For those who wanted to be assistant if their preferences were filled, here you go.
 		for(var/mob/new_player/player in unassigned)
-			if(player.client.prefs.alternate_option == BE_ASSISTANT)
+			if(player.client.prefs.alternate_option == BE_CLASS_D)
 				Debug("AC2 Assistant located, Player: [player]")
 				if(GLOB.using_map.flags & MAP_HAS_BRANCH)
 					var/datum/mil_branch/branch = mil_branches.get_branch(player.get_branch_pref())
@@ -451,7 +451,7 @@ var/global/datum/controller/occupations/job_master
 			switch(rank)
 				if("Cyborg")
 					return H.Robotize()
-				if("AI")
+				if("AIC")
 					return H
 				if("Captain")
 					var/sound/announce_sound = (ticker.current_state <= GAME_STATE_SETTING_UP)? null : sound('sound/misc/boatswain.ogg', volume=20)
@@ -554,7 +554,7 @@ var/global/datum/controller/occupations/job_master
 				if(!J)	continue
 				J.total_positions = text2num(value)
 				J.spawn_positions = text2num(value)
-				if(name == "AI" || name == "Cyborg")//I dont like this here but it will do for now
+				if(name == "AIC" || name == "Cyborg")//I dont like this here but it will do for now
 					J.total_positions = 0
 
 		return 1

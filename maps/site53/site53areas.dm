@@ -120,14 +120,14 @@
 	name = "Chaos Car"
 	icon_state = "Sleep"
 	requires_power = 0
-	dynamic_lighting = 1
+	dynamic_lighting = 0
 	area_flags = AREA_FLAG_RAD_SHIELDED
 
-/area/site53/tram/car2
-	name = "Chaos Car"
+/area/site53/tram/goc1
+	name = "GOC Car"
 	icon_state = "Sleep"
 	requires_power = 0
-	dynamic_lighting = 1
+	dynamic_lighting = 0
 	area_flags = AREA_FLAG_RAD_SHIELDED
 
 /area/site53/tram/hcz
@@ -149,7 +149,7 @@
 	name = "MTF Heli"
 	icon_state = "Sleep"
 	requires_power = 0
-	dynamic_lighting = 1
+	dynamic_lighting = 0
 	area_flags = AREA_FLAG_RAD_SHIELDED
 
 /area/shuttle/escape_pod7/station
@@ -253,8 +253,18 @@
 	icon_state = "checkpoint1"
 //	holomap_color = HOLOMAP_AREACOLOR_SECURITY
 
-/area/site53/upper_surface/commstower1
-	name = "\improper Communications Tower"
+/area/site53/upper_surface/serverfarmcontrol
+	name = "\improper Server Farm Control Room"
+	icon_state = "checkpoint1"
+//	holomap_color = HOLOMAP_AREACOLOR_SECURITY
+
+/area/site53/upper_surface/serverfarminterior
+	name = "\improper Server Farm Interior"
+	icon_state = "checkpoint1"
+//	holomap_color = HOLOMAP_AREACOLOR_SECURITY
+
+/area/site53/upper_surface/serverfarmtunnel
+	name = "\improper Server Farm Tunnel"
 	icon_state = "checkpoint1"
 //	holomap_color = HOLOMAP_AREACOLOR_SECURITY
 
@@ -1082,6 +1092,11 @@
 
 /area/site53/engineering/breakroom
 	name = "\improper Engineering Break Room"
+	icon_state = "engineering_locker"
+	area_flags = AREA_FLAG_RAD_SHIELDED
+
+/area/site53/engineering/containment_engineer
+	name = "\improper Containment Engineer Office"
 	icon_state = "engineering_locker"
 	area_flags = AREA_FLAG_RAD_SHIELDED
 

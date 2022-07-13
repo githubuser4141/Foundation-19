@@ -44,14 +44,14 @@ var/global/list/map_sectors = list()
 			I.pixel_x = 5*i - 2
 		if(x == GLOB.using_map.overmap_size)
 			I.pixel_x = 5*i + 2
-		overlays += I
+		add_overlay(I)
 
 //list used to track which zlevels are being 'moved' by the proc below
 var/list/moving_levels = list()
 //Proc to 'move' stars in spess
 //yes it looks ugly, but it should only fire when state actually change.
 //null direction stops movement
-proc/toggle_move_stars(zlevel, direction)
+/proc/toggle_move_stars(zlevel, direction)
 	if(!zlevel)
 		return
 

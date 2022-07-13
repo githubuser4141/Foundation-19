@@ -55,13 +55,13 @@
 	id = "Receiver A"
 	network = "tcommsat"
 	autolinkers = list("receiverA") // link to relay
-	freq_listening = list(AI_FREQ, SCI_FREQ, MED_FREQ, SUP_FREQ, SRV_FREQ, COMM_FREQ, ENG_FREQ, SEC_FREQ, ENT_FREQ, SEC_HCZ_FREQ, SEC_LCZ_FREQ, SEC_ECZ_FREQ)
+	freq_listening = list(AI_FREQ, SCI_FREQ, MED_FREQ, SUP_FREQ, SRV_FREQ, COMM_FREQ, ENG_FREQ, SEC_FREQ, ENT_FREQ, SEC_HCZ_FREQ, SEC_LCZ_FREQ, SEC_ECZ_FREQ, GOC_FREQ)
 
 	//Common and other radio frequencies for people to freely use
-	New()
-		for(var/i = PUBLIC_LOW_FREQ, i < PUBLIC_HIGH_FREQ, i += 2)
-			freq_listening |= i
-		..()
+/obj/machinery/telecomms/receiver/preset_right/New()
+	for(var/i = PUBLIC_LOW_FREQ, i < PUBLIC_HIGH_FREQ, i += 2)
+		freq_listening |= i
+	return ..()
 
 /obj/machinery/telecomms/receiver/preset_cent
 	id = "CentComm Receiver"
@@ -106,8 +106,8 @@
 /obj/machinery/telecomms/bus/preset_three
 	id = "Bus 3"
 	network = "tcommsat"
-	freq_listening = list(SEC_FREQ, COMM_FREQ, SEC_HCZ_FREQ, SEC_LCZ_FREQ, SEC_ECZ_FREQ)
-	autolinkers = list("processor3", "security", "command", "hcz-security", "lcz-security", "ecz-security")
+	freq_listening = list(SEC_FREQ, COMM_FREQ, SEC_HCZ_FREQ, SEC_LCZ_FREQ, SEC_ECZ_FREQ, GOC_FREQ)
+	autolinkers = list("processor3", "security", "command", "hcz-security", "lcz-security", "ecz-security", "GOC")
 
 /obj/machinery/telecomms/bus/preset_four
 	id = "Bus 4"
@@ -236,9 +236,9 @@
 		list(MED_I_FREQ, "Medical (I)", COMMS_COLOR_MEDICAL_I),
 		list(SEC_I_FREQ, "Security (I)", COMMS_COLOR_SECURITY_I),
 		list(HAIL_FREQ, "Hailing", COMMS_COLOR_HAILING),
-		list(SEC_HCZ_FREQ, "HCZ", COMMS_COLOR_SECURITY),
-		list(SEC_LCZ_FREQ, "LCZ", COMMS_COLOR_SECURITY),
-		list(SEC_ECZ_FREQ, "ECZ", COMMS_COLOR_SECURITY)
+		list(SEC_HCZ_FREQ, "HCZ", COMMS_COLOR_HCZ),
+		list(SEC_LCZ_FREQ, "LCZ", COMMS_COLOR_LCZ),
+		list(SEC_ECZ_FREQ, "ECZ", COMMS_COLOR_ECZ)
 	)
 	autolinkers = list("common")
 
@@ -264,8 +264,8 @@
 
 /obj/machinery/telecomms/server/presets/security
 	id = "Security Server"
-	freq_listening = list(SEC_FREQ)
-	channel_tags = list(list(SEC_FREQ, "Security", COMMS_COLOR_SECURITY))
+	freq_listening = list(SEC_FREQ, GOC_FREQ)
+	channel_tags = list(list(SEC_FREQ, "Security", COMMS_COLOR_SECURITY), list(GOC_FREQ, "GOC", COMMS_COLOR_COMMAND))
 	autolinkers = list("security")
 
 /obj/machinery/telecomms/server/presets/centcomm
@@ -307,18 +307,18 @@
 
 /obj/machinery/telecomms/server/presets/securityhcz
 	id = "HCZ Security Server"
-	channel_tags = list(list(SEC_HCZ_FREQ, "HCZ Security", COMMS_COLOR_EXPLORER))
+	channel_tags = list(list(SEC_HCZ_FREQ, "HCZ Security", COMMS_COLOR_HCZ))
 	freq_listening = list(SEC_HCZ_FREQ)
 	autolinkers = list("hcz-security")
 
 /obj/machinery/telecomms/server/presets/securitylcz
 	id = "LCZ Security Server"
-	channel_tags = list(list(SEC_LCZ_FREQ, "LCZ Security", COMMS_COLOR_COMMAND))
+	channel_tags = list(list(SEC_LCZ_FREQ, "LCZ Security", COMMS_COLOR_LCZ))
 	freq_listening = list(SEC_LCZ_FREQ)
 	autolinkers = list("lcz-security")
 
 /obj/machinery/telecomms/server/presets/securityecz
 	id = "ECZ Security Server"
-	channel_tags = list(list(SEC_ECZ_FREQ, "ECZ Security", COMMS_COLOR_SECURITY /*determines color */))
+	channel_tags = list(list(SEC_ECZ_FREQ, "ECZ Security", COMMS_COLOR_ECZ /*determines color */))
 	freq_listening = list(SEC_ECZ_FREQ)
 	autolinkers = list("ecz-security")

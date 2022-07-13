@@ -7,6 +7,7 @@
 #define RUIN_MAP_EDGE_PAD 15
 
 // Invisibility constants.
+#define INVISIBILITY_HUNTER      10 //SCP Edit: This is a special level for 966, so it can be seen by Night Vision and Infrared Goggles.
 #define INVISIBILITY_LIGHTING    20
 #define INVISIBILITY_LEVEL_ONE   35
 #define INVISIBILITY_LEVEL_TWO   45
@@ -73,7 +74,7 @@
 //General-purpose life speed define for plants.
 #define HYDRO_SPEED_MULTIPLIER 1
 
-#define DEFAULT_JOB_TYPE /datum/job/assistant
+#define DEFAULT_JOB_TYPE /datum/job/classd
 
 //Area flags, possibly more to come
 #define AREA_FLAG_RAD_SHIELDED      1  // shielded from radiation, clearly

@@ -10,7 +10,6 @@
 	economic_power = 4
 	alt_titles = list("Junior Xenobiologist", "Junior Xenoarcheologist", "Assistant Researcher", "Research Assistant", "Research Intern", "Junior Researcher", "Junior Robotics Technician")
 	ideal_character_age = 22
-	alt_titles = null
 	outfit_type = /decl/hierarchy/outfit/job/site90/crew/science/juniorscientist
 	allowed_branches = list(/datum/mil_branch/civilian)
 	allowed_ranks = list(/datum/mil_rank/civ/classb, /datum/mil_rank/civ/classc)
@@ -44,13 +43,13 @@
 	alt_titles = list("Xenobiologist", "Xenoarcheologist", "Robotics Technician")
 	minimal_player_age = 5
 	ideal_character_age = 22
-	alt_titles = null
 	outfit_type = /decl/hierarchy/outfit/job/site90/crew/science/scientist
 	allowed_branches = list(/datum/mil_branch/civilian)
-	allowed_ranks = list(/datum/mil_rank/civ/classc)
+	allowed_ranks = list(/datum/mil_rank/civ/classb)
 	hud_icon = "hudscientist"
 
-	access = list(access_sci_comms,
+	access = list(
+	access_sci_comms,
 	access_sciencelvl1,
 	access_sciencelvl2,
 	access_research
@@ -79,7 +78,6 @@
 	alt_titles = list("Senior Xenobiologist", "Senior Xenoarcheologist", "Senior Robotics Technician")
 	minimal_player_age = 10
 	ideal_character_age = 22
-	alt_titles = null
 	outfit_type = /decl/hierarchy/outfit/job/site90/crew/science/seniorscientist
 	allowed_branches = list(/datum/mil_branch/civilian)
 	allowed_ranks = list(/datum/mil_rank/civ/classb)
@@ -91,6 +89,7 @@
 		access_sciencelvl2,
 		access_sciencelvl3,
 		access_sciencelvl4,
+		access_securitylvl1,
 		access_research
 	)
 	minimal_access = list()

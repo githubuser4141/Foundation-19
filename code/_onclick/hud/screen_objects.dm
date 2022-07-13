@@ -15,9 +15,11 @@
 	unacidable = TRUE
 	var/obj/master = null    //A reference to the object in the slot. Grabs or items, generally.
 	var/globalscreen = FALSE //Global screens are not qdeled when the holding mob is destroyed.
+	var/datum/hud/hud
 
 /obj/screen/Destroy()
 	master = null
+	hud = null
 	return ..()
 
 /obj/screen/text
@@ -152,8 +154,8 @@
 		return TRUE
 
 /obj/screen/zone_sel/on_update_icon()
-	overlays.Cut()
-	overlays += image('icons/mob/zone_sel.dmi', "[selecting]")
+	cut_overlays()
+	add_overlay(image('icons/mob/zone_sel.dmi', "[selecting]"))
 
 /obj/screen/intent
 	name = "intent"

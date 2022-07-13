@@ -63,26 +63,26 @@
 			to_chat(user, "<span class='warning'>You're unable to insert the battery.</span>")
 
 /obj/item/device/suit_sensor_jammer/on_update_icon()
-	overlays.Cut()
+	cut_overlays()
 	if(bcell)
 		var/percent = bcell.percent()
 		switch(percent)
 			if(0 to 25)
-				overlays += "forth_quarter"
+				add_overlay("forth_quarter")
 			if(25 to 50)
-				overlays += "one_quarter"
-				overlays += "third_quarter"
+				add_overlay("one_quarter")
+				add_overlay("third_quarter")
 			if(50 to 75)
-				overlays += "two_quarters"
-				overlays += "second_quarter"
+				add_overlay("two_quarters")
+				add_overlay("second_quarter")
 			if(75 to 99)
-				overlays += "three_quarters"
-				overlays += "first_quarter"
+				add_overlay("three_quarters")
+				add_overlay("first_quarter")
 			else
-				overlays += "four_quarters"
+				add_overlay("four_quarters")
 
 		if(active)
-			overlays += "active"
+			add_overlay("active")
 
 /obj/item/device/suit_sensor_jammer/emp_act(var/severity)
 	..()
@@ -102,7 +102,7 @@
 	var/new_range = range + (rand(0,6) / severity) - (rand(0,3) / severity)
 	set_range(new_range)
 
-obj/item/device/suit_sensor_jammer/examine(mob/user, distance)
+/obj/item/device/suit_sensor_jammer/examine(mob/user, distance)
 	. = ..()
 	if(distance <= 3)
 		var/list/message = list()
@@ -113,12 +113,12 @@ obj/item/device/suit_sensor_jammer/examine(mob/user, distance)
 			message += "is lacking a cell."
 		to_chat(user, jointext(message,.))
 
-obj/item/device/suit_sensor_jammer/CanUseTopic(user, state)
+/obj/item/device/suit_sensor_jammer/CanUseTopic(user, state)
 	if(!bcell || bcell.charge <= 0)
 		return STATUS_CLOSE
 	return ..()
 
-obj/item/device/suit_sensor_jammer/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/item/device/suit_sensor_jammer/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 	var/list/methods = new
 	for(var/suit_sensor_jammer_method/ssjm in suit_sensor_jammer_methods)
 		methods[++methods.len] = list("name" = ssjm.name, "cost" = ssjm.energy_cost, "ref" = "\ref[ssjm]")
@@ -142,7 +142,7 @@ obj/item/device/suit_sensor_jammer/ui_interact(mob/user, ui_key = "main", var/da
 		ui.open()
 		ui.set_auto_update(1)
 
-obj/item/device/suit_sensor_jammer/OnTopic(var/mob/user, var/list/href_list, state)
+/obj/item/device/suit_sensor_jammer/OnTopic(var/mob/user, var/list/href_list, state)
 	if (href_list["enable_jammer"])
 		enable()
 		return TOPIC_REFRESH

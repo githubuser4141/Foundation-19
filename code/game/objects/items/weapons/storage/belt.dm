@@ -26,10 +26,10 @@
 		var/mob/M = src.loc
 		M.update_inv_belt()
 
-	overlays.Cut()
+	cut_overlays()
 	if(overlay_flags & BELT_OVERLAY_ITEMS)
 		for(var/obj/item/I in contents)
-			overlays += image('icons/obj/clothing/obj_belt_overlays.dmi', "[I.icon_state]")
+			add_overlay(image('icons/obj/clothing/obj_belt_overlays.dmi', "[I.icon_state]"))
 
 /obj/item/storage/belt/get_mob_overlay(mob/user_mob, slot)
 	var/image/ret = ..()
@@ -42,7 +42,7 @@
 				ret_overlays += H.species.get_offset_overlay_image(FALSE, 'icons/mob/onmob/onmob_belt.dmi', use_state, I.color, slot)
 			else
 				ret_overlays += overlay_image('icons/mob/onmob/onmob_belt.dmi', use_state, I.color, RESET_COLOR)
-			ret.overlays += ret_overlays
+			ret.add_overlay(ret_overlays)
 	return ret
 
 /obj/item/storage/belt/holster
@@ -67,7 +67,7 @@
 /obj/item/storage/belt/holster/attackby(obj/item/W as obj, mob/user as mob)
 	var/datum/extension/holster/H = get_extension(src, /datum/extension/holster)
 	if(H.holster(W, user))
-		return
+		return TRUE
 	else
 		. = ..(W, user)
 
@@ -89,15 +89,18 @@
 		var/mob/M = src.loc
 		M.update_inv_belt()
 
-	overlays.Cut()
+	cut_overlays()
 	var/datum/extension/holster/H = get_extension(src, /datum/extension/holster)
 	if(overlay_flags)
 		for(var/obj/item/I in contents)
 			if(I == H.holstered)
 				if(overlay_flags & BELT_OVERLAY_HOLSTER)
-					overlays += image('icons/obj/clothing/obj_belt_overlays.dmi', "[I.icon_state]")
+					add_overlay(image('icons/obj/clothing/obj_belt_overlays.dmi', "[I.icon_state]"))
 			else if(overlay_flags & BELT_OVERLAY_ITEMS)
-				overlays += image('icons/obj/clothing/obj_belt_overlays.dmi', "[I.icon_state]")
+				add_overlay(image('icons/obj/clothing/obj_belt_overlays.dmi', "[I.icon_state]"))
+
+
+
 
 /obj/item/storage/belt/utility
 	name = "tool belt"
@@ -265,6 +268,15 @@
 		/obj/item/clothing/head/beret,
 		/obj/item/material/knife/folding/
 		)
+
+/obj/item/storage/belt/holster/security/full/New()
+	..()
+	new /obj/item/handcuffs(src)
+	new /obj/item/reagent_containers/spray/pepper(src)
+	new /obj/item/device/flash(src)
+	new /obj/item/device/flashlight/maglight(src)
+	update_icon()
+
 
 /obj/item/storage/belt/general
 	name = "equipment belt"

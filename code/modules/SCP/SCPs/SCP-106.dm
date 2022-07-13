@@ -14,6 +14,11 @@ GLOBAL_LIST_EMPTY(scp106_spawnpoints)
 	see_in_dark = 7
 	icon = 'icons/SCP/scp-106.dmi'
 	icon_state = null
+	status_flags = NO_ANTAG
+
+/mob/living/carbon/human/scp106/New(new_loc, new_species)
+	new_species = "SCP-106"
+	return ..()
 
 /datum/scp/scp_106
 	name = "SCP-106"
@@ -53,8 +58,9 @@ GLOBAL_LIST_EMPTY(scp106_spawnpoints)
 	GLOB.scp106s |= src
 
 /mob/living/carbon/human/scp106/Destroy()
+	target = null
 	GLOB.scp106s -= src
-	..()
+	return ..()
 
 
 /mob/living/carbon/human/scp106/proc/update_stuff_PD()
@@ -83,6 +89,11 @@ GLOBAL_LIST_EMPTY(scp106_spawnpoints)
 	src << "<span class = 'notice'>You cannot speak.</span>"
 	return 0
 
+/mob/living/carbon/human/scp106/bullet_act(obj/item/projectile/Proj)
+	if(!Proj)
+		return
+	visible_message("<span class='danger'>\The [Proj] bounces off [src]'s acidic skin!</span>")
+	return 0
 /mob/living/carbon/human/scp106/attack_hand(var/mob/living/L)
 	if (L == src)
 		return ..(L)

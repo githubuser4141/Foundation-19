@@ -26,7 +26,7 @@
 						/datum/job/janitor, /datum/job/chef, /datum/job/bartender,
 						/datum/job/senior_scientist, /datum/job/nt_pilot, /datum/job/scientist, /datum/job/mining, /datum/job/guard, /datum/job/scientist_assistant,
 						/datum/job/ai, /datum/job/cyborg,
-						/datum/job/crew, /datum/job/assistant,
+						/datum/job/crew, /datum/job/classd,
 						/datum/job/merchant, /datum/job/stowaway
 						)
 
@@ -231,7 +231,6 @@
 	economic_modifier = 4
 	minimal_player_age = 10
 	ideal_character_age = 25
-	alt_titles = null
 	outfit_type = /decl/hierarchy/outfit/site90/torch/crew/security/enlistedofficer
 	allowed_branches = list(
 		/datum/mil_branch/security
@@ -599,7 +598,6 @@
 	economic_modifier = 4
 	minimal_player_age = 10
 	ideal_character_age = 25
-	alt_titles = null
 	outfit_type = /decl/hierarchy/outfit/job/torch/crew/security/maa
 	allowed_branches = list(
 		/datum/mil_branch/expeditionary_corps,
@@ -1075,7 +1073,7 @@
 	access = list(access_research, access_mining_office, access_nanotrasen, access_petrov, access_expedition_shuttle, access_guppy, access_hangar)
 
 
-/datum/job/assistant
+/datum/job/classd
 	title = "Passenger"
 	total_positions = 12
 	spawn_positions = 12

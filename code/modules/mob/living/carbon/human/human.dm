@@ -306,7 +306,7 @@
 		var/list/obj/item/organ/external/standing = list()
 		for(var/limb_tag in list(BP_L_FOOT, BP_R_FOOT))
 			var/obj/item/organ/external/E = organs_by_name[limb_tag]
-			if(E && E.is_usable())
+			if(E?.is_usable())
 				standing[E.organ_tag] = E
 		if((def_zone == BP_L_FOOT || def_zone == BP_L_LEG) && standing[BP_L_FOOT])
 			floor_organ = standing[BP_L_FOOT]
@@ -348,7 +348,7 @@
 		return list(init)
 
 	for(var/obj/item/organ/external/E in list(floor, init))
-		while(E && E.parent_organ)
+		while(E?.parent_organ)
 			var/candidate = organs_by_name[E.parent_organ]
 			if(!candidate || (candidate in traced_organs))
 				break // Organ parenthood is not guaranteed to be a tree
@@ -698,8 +698,7 @@
 		if(incapacitated())
 			to_chat(src, SPAN_WARNING("You cannot do that right now."))
 			return
-		var/datum/gender/G = gender_datums[gender]
-		visible_message(SPAN_DANGER("\The [src] starts sticking a finger down [G.his] own throat. It looks like [G.he] [G.is] trying to throw up!"))
+		visible_message(SPAN_DANGER("\The [src] starts sticking a finger down [p_their()] own throat. It looks like [p_they()] [p_are()] trying to throw up!"))
 		if(!do_after(src, 30))
 			return
 		timevomit = max(timevomit, 5)
@@ -1260,8 +1259,9 @@
 		remove_language(lang.name)
 
 	for(var/thing in free_languages)
-		var/datum/language/lang = thing
-		add_language(lang.name)
+		if(!isnull(thing))
+			var/datum/language/lang = thing
+			add_language(lang.name)
 
 	if(LAZYLEN(default_languages) && isnull(default_language))
 		default_language = default_languages[1]
@@ -1461,10 +1461,9 @@
 	var/fail_prob = U.skill_fail_chance(SKILL_MEDICAL, 60, SKILL_TRAINED, 3)
 	if(self)
 		fail_prob += U.skill_fail_chance(SKILL_MEDICAL, 20, SKILL_EXPERIENCED, 1)
-	var/datum/gender/T = gender_datums[get_gender()]
 	if(prob(fail_prob))
 		visible_message( \
-		"<span class='danger'>[U] pops [self ? "[T.his]" : "[S]'s"] [current_limb.joint] in the WRONG place!</span>", \
+		"<span class='danger'>[U] pops [self ? "[p_their()]" : "[S]'s"] [current_limb.joint] in the WRONG place!</span>", \
 		"<span class='danger'>[self ? "You pop" : "[U] pops"] your [current_limb.joint] in the WRONG place!</span>" \
 		)
 		current_limb.add_pain(30)
@@ -1472,7 +1471,7 @@
 		shock_stage += 20
 	else
 		visible_message( \
-		"<span class='danger'>[U] pops [self ? "[T.his]" : "[S]'s"] [current_limb.joint] back in!</span>", \
+		"<span class='danger'>[U] pops [self ? "[p_their()]" : "[S]'s"] [current_limb.joint] back in!</span>", \
 		"<span class='danger'>[self ? "You pop" : "[U] pops"] your [current_limb.joint] back in!</span>" \
 		)
 		current_limb.undislocate()
@@ -1614,9 +1613,8 @@
 	if(src != M)
 		..()
 	else
-		var/datum/gender/T = gender_datums[get_gender()]
 		visible_message( \
-			"<span class='notice'>[src] examines [T.self].</span>", \
+			"<span class='notice'>[src] examines [p_themself()].</span>", \
 			"<span class='notice'>You check yourself for injuries.</span>" \
 			)
 
@@ -1836,35 +1834,10 @@
 		to_chat(src, SPAN_NOTICE("... [pick(GLOB.dream_tokens)] ..."))
 
 GLOBAL_LIST_INIT(dream_tokens, list(
-	"an ID card", "a bottle", "a familiar face", "a crewmember",
-	"a toolbox", "a security officer", "the captain", "voices from all around",
-	"deep space", "a doctor", "the engine", "a traitor",
-	"an ally", "darkness", "light", "a scientist",
-	"a monkey", "a catastrophe", "a loved one", "a gun",
-	"warmth", "freezing", "the sun", "a hat",
-	"a ruined station", "a planet", "phoron", "air",
-	"the medical bay", "the bridge", "blinking lights", "a blue light",
-	"an abandoned laboratory", "NanoTrasen", "pirates", "mercenaries",
-	"blood", "healing", "power", "respect",
-	"riches", "space", "a crash", "happiness",
-	"pride", "a fall", "water", "flames",
-	"ice", "melons", "flying", "the eggs",
-	"money", "the chief engineer", "the chief science officer", "the chief medical officer",
-	"a station engineer", "the janitor", "the atmospheric technician", "a cargo technician",
-	"the botanist", "a shaft miner", "the psychologist", "the chemist",
-	"the virologist", "the roboticist", "a chef", "the bartender",
-	"a chaplain", "a librarian", "a mouse", "a beach",
-	"the holodeck", "a smokey room", "a voice", "the cold",
-	"an operating table", "the rain", "a skrell", "an unathi",
-	"a beaker of strange liquid", "the supermatter", "a creature built completely of stolen flesh", "a GAS",
-	"an IPC", "a Dionaea", "a being made of light", "the commanding officer",
-	"the executive officer", "the chief of security", "the corporate liason", "the representative",
-	"the senior advisor", "the bridge officer", "the senior engineer", "the physician",
-	"the corpsman", "the counselor", "the medical contractor", "the security contractor",
-	"a stowaway", "an old friend", "the prospector", "the pilot",
-	"the passenger", "the chief of security", "the master at arms", "the forensic technician",
-	"the brig chief", "the tower", "the man with no face", "a field of flowers",
-	"an old home", "the merc", "a surgery table", "a needle",
-	"a blade", "an ocean", "right behind you", "standing above you",
-	"someone near by", "a place forgotten"
+	"an ID card","a strange smiling white mask","the devil","a researcher","a grim fate","a bizzare object","a man set ablaze","a gunfight","the gods","the spirits","a doctor with an red stoned amulet","the foundation", "a happy family", "a P90 closed bolt automatic rifle", "a Dying Friend", "Germany", "Cheese", "a Camera", "many red eyes in the dark", "hell", "a holiday", "a mother", "a bottle", "a forsaken child", "the seven offspring", "a cultist", "a man without a face", "The Middle East", "Texas", "a lonesome road", "Paris", "Dresden", "the catacombs", "Tokyo city",
+	"the Harak","a pile of flesh","a long hallway","a dark and infinite stairway","a rotting elderly man approaching","filth","a pale man crying","a bananna","a monkey","the Global Occult Coalition","the world wars", "an angry boss", "a broken limb", "a holstered M1911", "a Dead Friend", "a ruined facility", "a darting light in the middle of the night", "heaven", "the afterlife", "a father", "a senator", "an acid pool", "a black substance on the floor", "a little girl with mismatched eyes", "a vacant building", "the backrooms", "Berlin", "Munich", "New York", "the government",
+	"the disease", "a dead man walking", "god himself", "a strange statue wanting a hug", "a security guard", "a joyful angry lizard", "a man in arizona", "the flesh that hates", "termination", "the end of the world", "the ocean", "a useless doctor", "an uncooperative prisoner", "the president", "a needle", "a glowing entity with a blazing blade", "a woman", "an outbreak", "a riot", "voices from the dark", "an odd looking person", "a rainy day", "a jade ring", "a broken hand", "a warm numbness", "a forest of eyes", "a stalker", "Germany", "Austria", "London", "a video game",
+	"the ruins of Site 19", "a plague doctor", "the sickness", "a teddy bear", "a lost friend", "a mutilated Ronald Reagan speaking", "a pill bottle", "the 05 Council", "Hatred", "a sunrise","a sunset", "a corruptive ray of sunlight", "a cup of coffee", "a great outfit", "a friendly D-Class Personnel", "a hallway full of corpses", "a blade", "a loved one", "a hat", "a distant horizon", "a crimson red liquid", "a cigarette", "a brother", "an entity behind a windowed door", "Japan", "the himalayas", "a soviet gas mask", "a good song", "a porcelain doll", "a fat aristocrat", "a cannibal",
+	"D-Class Personnel", "a nurse", "The United Nations", "home", "a peaceful meadow", "a haunting forest", "an angry man", "a dead D-Class", "an imposter", "a Nobody", "a Friend", "a Stranger", "an enemy", "the gas prices", "a cat without an back half", "the moon", "the sun", "a strange floating object", "an engineer", "the janitor", "a firearm", "England", "an orange blob", "a demon", "a seven winged creature", "a red haired man in a tophat and red suit trying to sell you a product", "an artifical person", "a mass of flesh with eyes", "France", "Burgundy", "UnLondon",
+	"there something moving inside of you", "a red headed doctor with security shades", "a hanged monarch", "a strange city", "a headless man", "the archivist", "the research director", "a pestilence",
 ))

@@ -20,14 +20,14 @@ GLOBAL_DATUM_INIT(malf, /datum/antagonist/rogue_ai, new)
 
 /datum/antagonist/rogue_ai/can_become_antag(var/datum/mind/player, var/ignore_role)
 	. = ..(player, ignore_role)
-	if(jobban_isbanned(player.current, "AI"))
+	if(jobban_isbanned(player.current, "AIC"))
 		return 0
 	return .
 
 /datum/antagonist/rogue_ai/build_candidate_list()
 	..()
 	for(var/datum/mind/player in candidates)
-		if(player.assigned_role && player.assigned_role != "AI")
+		if(player.assigned_role && player.assigned_role != "AIC")
 			candidates -= player
 	return candidates
 
@@ -57,7 +57,7 @@ GLOBAL_DATUM_INIT(malf, /datum/antagonist/rogue_ai, new)
 			return
 
 		A.setup_for_malf()
-		A.laws = new /datum/ai_laws/nanotrasen/malfunction
+		A.laws = new /datum/ai_laws/foundation_alt/malfunction
 
 
 		var/mob/living/silicon/ai/malf = player.current
@@ -101,4 +101,3 @@ GLOBAL_DATUM_INIT(malf, /datum/antagonist/rogue_ai, new)
 	if (newname)
 		player.fully_replace_character_name(newname)
 	if(player.mind) player.mind.name = player.name
-

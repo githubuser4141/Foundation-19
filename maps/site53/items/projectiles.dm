@@ -62,7 +62,7 @@
 	ammo_type = /obj/item/ammo_casing/c9mm
 	matter = list(DEFAULT_WALL_MATERIAL = 1200)
 	caliber = "9mm"
-	max_ammo = 14
+	max_ammo = 17
 	multiple_sprites = 1
 
 /obj/item/ammo_magazine/scp/mk9/rubber
@@ -72,7 +72,7 @@
 	ammo_type = /obj/item/ammo_casing/c9mm/rubber
 	matter = list(DEFAULT_WALL_MATERIAL = 1200)
 	caliber = "9mm"
-	max_ammo = 14
+	max_ammo = 17
 	multiple_sprites = 1
 
 /obj/item/ammo_magazine/scp/p90_mag
@@ -151,4 +151,15 @@
 	matter = list(DEFAULT_WALL_MATERIAL = 1500)
 	ammo_type = /obj/item/ammo_casing/a762
 	max_ammo = 10
+	multiple_sprites = 1
+
+/obj/item/ammo_magazine/scp/fnfal
+	name = "magazine (7.62x51 NAVO)"
+	icon_state = "7.62x54s"
+	origin_tech = list(TECH_COMBAT = 2)
+	mag_type = MAGAZINE
+	caliber = "a762nato"
+	matter = list(DEFAULT_WALL_MATERIAL = 1500)
+	ammo_type = /obj/item/ammo_casing/a762nato
+	max_ammo = 20
 	multiple_sprites = 1

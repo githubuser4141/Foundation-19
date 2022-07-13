@@ -159,17 +159,17 @@ var/list/mob_hat_cache = list()
 
 /mob/living/silicon/robot/drone/on_update_icon()
 
-	overlays.Cut()
+	cut_overlays()
 	if(stat == 0)
 		if(emagged)
-			overlays += "eyes-[icon_state]-emag"
+			add_overlay("eyes-[icon_state]-emag")
 		else
-			overlays += "eyes-[icon_state]"
+			add_overlay("eyes-[icon_state]")
 	else
-		overlays -= "eyes"
+		cut_overlay("eyes")
 
 	if(hat) // Let the drones wear hats.
-		overlays |= get_hat_icon(hat, hat_x_offset, hat_y_offset)
+		add_overlay(get_hat_icon(hat, hat_x_offset, hat_y_offset))
 
 /mob/living/silicon/robot/drone/choose_icon()
 	return
@@ -260,8 +260,8 @@ var/list/mob_hat_cache = list()
 	clear_supplied_laws()
 	clear_inherent_laws()
 	QDEL_NULL(laws)
-	laws = new /datum/ai_laws/syndicate_override
-	set_zeroth_law("Only [user.real_name] and people \he designates as being such are operatives.")
+	laws = new /datum/ai_laws/insurgency_override
+	set_zeroth_law("Only [user.real_name] and people \he designates as being such are insurgents.")
 
 //DRONE LIFE/DEATH
 //For some goddamn reason robots have this hardcoded. Redefining it for our fragile friends here.

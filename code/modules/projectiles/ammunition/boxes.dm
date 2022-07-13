@@ -21,10 +21,10 @@
 	multiple_sprites = 1
 
 /obj/item/ammo_magazine/c50
-	name = "speed loader (.50)"
+	name = "speed loader (.44 magnum)"
 	desc = "A speed loader for revolvers."
 	icon_state = "38"
-	caliber = ".50"
+	caliber = ".44"
 	ammo_type = /obj/item/ammo_casing/a50
 	matter = list(DEFAULT_WALL_MATERIAL = 1260)
 	max_ammo = 6
@@ -66,17 +66,8 @@
 	caliber = CALIBER_SHOTGUN
 	ammo_type = /obj/item/ammo_casing/shotgun
 	matter = list(MATERIAL_STEEL = 1440)
-	max_ammo = 4
+	max_ammo = 6
 	multiple_sprites = 1
-	var/marking_color
-
-/obj/item/ammo_magazine/shotholder/on_update_icon()
-	..()
-	overlays.Cut()
-	if(marking_color)
-		var/image/I = image(icon, "shotholder-marking")
-		I.color = marking_color
-		overlays += I
 
 /obj/item/ammo_magazine/shotholder/attack_hand(mob/user)
 	if((user.a_intent == I_HURT) && (stored_ammo.len))
@@ -91,25 +82,21 @@
 /obj/item/ammo_magazine/shotholder/shell
 	name = "shotgun shell holder"
 	ammo_type = /obj/item/ammo_casing/shotgun/pellet
-	marking_color = COLOR_RED_GRAY
 
 /obj/item/ammo_magazine/shotholder/beanbag
 	name = "beanbag shell holder"
 	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
 	matter = list(MATERIAL_STEEL = 720)
-	marking_color = COLOR_PAKISTAN_GREEN
 
 /obj/item/ammo_magazine/shotholder/flash
 	name = "illumination shell holder"
 	ammo_type = /obj/item/ammo_casing/shotgun/flash
 	matter = list(MATERIAL_STEEL = 360, MATERIAL_GLASS = 360)
-	marking_color = COLOR_PALE_YELLOW
 
 /obj/item/ammo_magazine/shotholder/stun
 	name = "stun shell holder"
 	ammo_type = /obj/item/ammo_casing/shotgun/stunshell
 	matter = list(MATERIAL_STEEL = 1440, MATERIAL_GLASS = 2880)
-	marking_color = COLOR_MUZZLE_FLASH
 
 /obj/item/ammo_magazine/shotholder/empty
 	name = "shotgun ammunition holder"
@@ -131,7 +118,7 @@
 
 /obj/item/ammo_magazine/smg_top
 	name = "top mounted magazine"
-	icon_state = "smg_top"
+	icon_state = "9mmt"
 	mag_type = MAGAZINE
 	ammo_type = /obj/item/ammo_casing/pistol/small
 	matter = list(MATERIAL_STEEL = 1200)
@@ -184,16 +171,18 @@
 
 /obj/item/ammo_magazine/pistol/double
 	name = "doublestack pistol magazine"
-	icon_state = "pistol_mag"
+	icon_state = "9mmds"
 	matter = list(MATERIAL_STEEL = 1050)
 	max_ammo = 15
 
 /obj/item/ammo_magazine/pistol/double/rubber
 	labels = list("rubber")
+	icon_state = "R9mmds"
 	ammo_type = /obj/item/ammo_casing/pistol/rubber
 
 /obj/item/ammo_magazine/pistol/double/practice
 	labels = list("practice")
+	icon_state = "R9mmds"
 	ammo_type = /obj/item/ammo_casing/pistol/practice
 
 /obj/item/ammo_magazine/pistol/small
@@ -343,7 +332,7 @@
 
 /obj/item/ammo_magazine/t12
 	name = "T12 magazine"
-	icon_state = "t12"
+	icon_state = "c762" //untill someone has a better sprite
 	mag_type = MAGAZINE
 	caliber = CALIBER_T12
 	matter = list(MATERIAL_STEEL = 2400)

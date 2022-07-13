@@ -234,7 +234,7 @@
 	. = ..()
 
 /obj/machinery/light/on_update_icon(var/trigger = 1)
-	overlays.Cut()
+	cut_overlays()
 	icon_state = "[base_state]_empty" //Never use the initial state. That'll just reset it to the mapping icon.
 	atom_flags = atom_flags & ~ATOM_FLAG_CAN_BE_PAINTED
 	pixel_y = 0
@@ -268,7 +268,7 @@
 		if (on)
 			I.plane = EFFECTS_ABOVE_LIGHTING_PLANE
 			I.layer = ABOVE_LIGHTING_LAYER
-		overlays += I
+		add_overlay(I)
 
 	if(on)
 
@@ -435,7 +435,7 @@
 // true if area has power and lightswitch is on
 /obj/machinery/light/powered()
 	var/area/A = get_area(src)
-	return A && A.lightswitch && ..(power_channel)
+	return A?.lightswitch && ..(power_channel)
 
 /obj/machinery/light/proc/flicker(var/amount = rand(10, 20))
 	if(flickering) return
@@ -733,7 +733,7 @@
 			broken = TRUE
 	var/image/I = image(icon, src, "[base_state]_attachment[broken ? "_broken" : ""]")
 	I.color = null
-	overlays += I
+	add_overlay(I)
 
 /obj/item/light/New(atom/newloc, obj/machinery/light/fixture = null)
 	..()

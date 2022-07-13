@@ -1,8 +1,6 @@
 GLOBAL_LIST_EMPTY(scp049s)
 GLOBAL_LIST_EMPTY(scp049_1s)
 
-#define LANGUAGE_ZOMBIE "Zombie"
-
 /mob/living/carbon/human/scp049
 	desc = "A mysterious plague doctor."
 	SCP = /datum/scp/scp_049
@@ -18,6 +16,7 @@ GLOBAL_LIST_EMPTY(scp049_1s)
 	var/chasing_sound = FALSE
 	var/anger = 0
 	var/angry = FALSE
+	status_flags = NO_ANTAG
 
 /datum/scp/scp_049
 	name = "SCP-049"
@@ -37,15 +36,20 @@ GLOBAL_LIST_EMPTY(scp049_1s)
 	else
 		transform = null
 	return
+/mob/living/carbon/human/scp049/New(new_loc, new_species)
+	new_species = "SCP-049"
+	return  ..()
 
 /mob/living/carbon/human/scp049/Initialize()
 	..()
-	add_language(/datum/language/english)
-
+	add_language(LANGUAGE_ENGLISH, TRUE)
+	add_language(LANGUAGE_HUMAN_FRENCH, TRUE)
+	add_language(LANGUAGE_HUMAN_GERMAN, TRUE)
+	add_language(LANGUAGE_HUMAN_SPANISH, TRUE)
+	update_languages()
 	// fix names
 	fully_replace_character_name("SCP-049")
 
-	set_species("SCP-049")
 	GLOB.scp049s += src
 	verbs += /mob/living/carbon/human/proc/SCP_049_talk
 	verbs += /mob/living/carbon/human/proc/door_049
@@ -61,8 +65,11 @@ GLOBAL_LIST_EMPTY(scp049_1s)
 	)
 
 /mob/living/carbon/human/scp049/Destroy()
+	pestilence_images = null
+	attempted_surgery_on = null
+	target = null
 	GLOB.scp049s -= src
-	. = ..()
+	return ..()
 
 /mob/living/carbon/human/scp049/Life()
 	..()
@@ -70,9 +77,6 @@ GLOBAL_LIST_EMPTY(scp049_1s)
 		addtimer(CALLBACK(src, .proc/see_disease), 5 SECONDS) //only occasionally see the disease, less deadly. TODO: containment mechanics
 	if(anger==100)
 		angry = TRUE
-
-
-#warn work on anger system
 
 /mob/living/carbon/human/scp049/Login()
 	. = ..()
@@ -83,6 +87,7 @@ GLOBAL_LIST_EMPTY(scp049_1s)
 			update_sight()
 	if(target)
 		target = null
+
 /mob/living/carbon/human/scp049/Logout()
 	. = ..()
 	if(mind)
@@ -439,18 +444,3 @@ GLOBAL_LIST_EMPTY(scp049_1s)
 	to_chat(src, "<span class='notice'>You have cured [target].</span>")
 	curing = FALSE
 	getTarget()
-
-/datum/language/zombie
-	name = LANGUAGE_ZOMBIE
-	desc = "A crude form of feral communication utilized by the shuffling horrors. The living only hear guttural wails of agony."
-	colour = "cult"
-	key = "a"
-	speech_verb = "growls"
-	exclaim_verb = "wails"
-	partial_understanding = list(
-		LANGUAGE_HUMAN_GERMAN = 30,
-		LANGUAGE_ENGLISH = 35
-	)
-	syllables = list("mhh..", "grr..", "nnh..")
-	shorthand = "ZM"
-	hidden_from_codex = TRUE
