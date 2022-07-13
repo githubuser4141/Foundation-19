@@ -40,6 +40,7 @@
 	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND)
 	restricted_software = list(MECH_SOFTWARE_WEAPONS)
 
+
 /obj/item/mech_equipment/mounted_system/projectile/shotgun
 	name = "mounted Remmington 29x"
 	icon_state = "mech_ballistic"
@@ -83,7 +84,7 @@
 /obj/item/ammo_magazine/mech/drum // Shotgun
 	name = "large 12g drum magazine"
 	desc = "A large ammo drum for a mech's gun. Looks way too big for a normal gun."
-	icon_state = "smg_top"
+	icon_state = "drum"
 	mag_type = MAGAZINE
 	ammo_type = /obj/item/ammo_casing/shotgun
 	matter = list(MATERIAL_STEEL = 12500)
