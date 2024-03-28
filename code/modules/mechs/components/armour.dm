@@ -53,7 +53,7 @@
 	icon_state = "armor_c"
 	icon_state_broken = "armor_c_broken"
 	armor = list(
-		melee = ARMOR_MELEE_MAJOR,
+		melee = ARMOR_MELEE_VERY_HIGH,
 		bullet = ARMOR_BALLISTIC_RIFLE,
 		laser = ARMOR_LASER_MAJOR,
 		energy = ARMOR_ENERGY_MINOR,
