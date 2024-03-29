@@ -142,7 +142,7 @@
 	name = "mechshield"
 	var/obj/item/mech_equipment/shields/shields = null
 	var/active = 0
-	layer = ABOVE_HUMAN_LAYER
+	layer = VEHICLE_LOAD_LAYER
 	var/north_layer = MECH_UNDER_LAYER
 	plane = DEFAULT_PLANE
 	pixel_x = 8

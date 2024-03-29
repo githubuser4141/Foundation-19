@@ -7,7 +7,6 @@
 	move_delay = 4
 	turn_delay = 1
 	power_use = 25
-	pivot_step = TRUE
 
 /obj/item/mech_component/propulsion/tracks
 	name = "tracks"
@@ -19,6 +18,7 @@
 	turn_delay = 7
 	power_use = 150
 	color = COLOR_WHITE
+	can_strafe = MECH_STRAFING_BACK
 
 /obj/item/mech_component/chassis/pod
 	name = "spherical exosuit chassis"

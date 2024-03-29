@@ -73,12 +73,12 @@
 	maxHealth = body ? body.mech_health : 0
 	health = maxHealth-(getFireLoss()+getBruteLoss())
 
-/mob/living/exosuit/adjustFireLoss(amount, obj/item/mech_component/MC = pick(list(arms, legs, body, head)))
+/mob/living/exosuit/adjustFireLoss(amount, obj/item/mech_component/MC = pick(list(body)))
 	if(MC)
 		MC.take_burn_damage(amount)
 		MC.update_health()
 
-/mob/living/exosuit/adjustBruteLoss(amount, obj/item/mech_component/MC = pick(list(arms, legs, body, head)))
+/mob/living/exosuit/adjustBruteLoss(amount, obj/item/mech_component/MC = pick(list(body)))
 	if(MC)
 		MC.take_brute_damage(amount)
 		MC.update_health()
@@ -157,14 +157,14 @@
 
 /mob/living/exosuit/getFireLoss()
 	var/total = 0
-	for(var/obj/item/mech_component/MC in list(arms, legs, body, head))
+	for(var/obj/item/mech_component/MC in list(body))
 		if(MC)
 			total += MC.burn_damage
 	return total
 
 /mob/living/exosuit/getBruteLoss()
 	var/total = 0
-	for(var/obj/item/mech_component/MC in list(arms, legs, body, head))
+	for(var/obj/item/mech_component/MC in list(body))
 		if(MC)
 			total += MC.brute_damage
 	return total

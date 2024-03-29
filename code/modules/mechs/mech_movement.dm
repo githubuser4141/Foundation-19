@@ -115,12 +115,14 @@
 		var/txt_dir = direction & UP ? "upwards" : "downwards"
 		exosuit.visible_message(SPAN_NOTICE("\The [exosuit] moves [txt_dir]."))
 
-	if(exosuit.dir != moving_dir && !(direction & (UP|DOWN)))
+	if(exosuit.dir != moving_dir && !exosuit.strafing && !(direction & (UP|DOWN)))
 		playsound(exosuit.loc, exosuit.mech_turn_sound, 40,1)
 		exosuit.set_dir(moving_dir)
 		exosuit.SetMoveCooldown(exosuit.legs.turn_delay)
 	else
 		exosuit.SetMoveCooldown(exosuit.legs ? exosuit.legs.move_delay : 3)
+		if(exosuit.strafing)
+			exosuit.SetMoveCooldown(exosuit.legs ? exosuit.legs.move_delay*MECH_STRAFE_SPEED : 3)
 		var/turf/target_loc = get_step(exosuit, direction)
 		if(target_loc && exosuit.legs && exosuit.legs.can_move_on(exosuit.loc, target_loc) && exosuit.MayEnterTurf(target_loc))
 			exosuit.Move(target_loc)

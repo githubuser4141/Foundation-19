@@ -29,7 +29,8 @@
 			/obj/screen/exosuit/toggle/hatch_open,
 			/obj/screen/exosuit/radio,
 			/obj/screen/exosuit/rename,
-			/obj/screen/exosuit/toggle/camera
+			/obj/screen/exosuit/toggle/camera,
+			/obj/screen/exosuit/toggle/strafe
 			)
 		if(body && body.pilot_coverage >= 100)
 			additional_hud_elements += /obj/screen/exosuit/toggle/air
@@ -47,6 +48,8 @@
 		hud_open = locate(/obj/screen/exosuit/toggle/hatch_open) in hud_elements
 		hud_power = new /obj/screen/exosuit/power(src)
 		hud_power.screen_loc = "EAST-1:12,CENTER-4:25"
+		hud_strafe = new /obj/screen/exosuit/toggle/strafe(src)
+		hud_strafe.screen_loc = "EAST-1:12,CENTER-4:20"
 		hud_elements |= hud_power
 		hud_power_control = locate(/obj/screen/exosuit/toggle/power_control) in hud_elements
 		hud_camera = locate(/obj/screen/exosuit/toggle/camera) in hud_elements

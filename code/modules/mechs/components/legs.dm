@@ -7,6 +7,7 @@
 	var/obj/item/robot_parts/robot_component/actuator/motivator
 	power_use = 50
 	var/max_fall_damage = 30
+	var/can_strafe = MECH_STRAFING_OMNI
 
 /obj/item/mech_component/propulsion/Destroy()
 	QDEL_NULL(motivator)
@@ -40,8 +41,18 @@
 	if(!istype(location))
 		return 1 // Inside something, assume you can get out.
 	if(!istype(target_loc))
-		return 0 // What are you even doing.
-	return 1
+		return FALSE // What are you even doing.
+	if(ismech(loc))
+		var/mob/living/exosuit/ownerMech = loc
+		var/moveDir = get_dir(location, target_loc)
+		if(ownerMech.strafing)
+			switch(can_strafe)
+				if(MECH_STRAFING_NONE)
+					if(moveDir != ownerMech.dir) return FALSE
+				if(MECH_STRAFING_BACK)
+					if(!(moveDir == ownerMech.dir || moveDir == GLOB.reverse_dir[ownerMech.dir])) return FALSE
+				//if(MECH_STRAFING_OMNI)
+	return TRUE
 
 /obj/item/mech_component/propulsion/get_damage_string()
 	if(!motivator || !motivator.is_functional())

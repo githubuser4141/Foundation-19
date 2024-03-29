@@ -25,7 +25,7 @@
 	origin_tech = list(TECH_DATA = 3,TECH_BIO = 2)
 
 /obj/item/circuitboard/exosystem/weapons
-	name = T_BOARD_MECH("basic weapon systems")
+	name = T_BOARD_MECH("weapon systems")
 	contains_software = list(MECH_SOFTWARE_WEAPONS)
 	icon_state = "mainboard"
 	origin_tech = list(TECH_DATA = 4, TECH_COMBAT = 3)

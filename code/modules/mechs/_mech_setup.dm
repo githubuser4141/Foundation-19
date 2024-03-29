@@ -25,6 +25,7 @@ GLOBAL_LIST_INIT(mech_weapon_overlays, icon_states('icons/mecha/mech_weapon_over
 #define EMP_GUI_DISRUPT 5     // 1 ion rifle shot == 8.
 #define EMP_MOVE_DISRUPT 10   // 2 shots.
 #define EMP_ATTACK_DISRUPT 20 // 3 shots.
+#define EMP_STRAFE_DISABLE 10
 
 //About components
 #define MECH_COMPONENT_DAMAGE_UNDAMAGED 1
@@ -44,3 +45,12 @@ GLOBAL_LIST_INIT(mech_weapon_overlays, icon_states('icons/mecha/mech_weapon_over
 #define MECH_POWER_OFF 0
 #define MECH_POWER_TRANSITION 1
 #define MECH_POWER_ON 2
+
+/// Strafing types
+#define MECH_STRAFING_NONE 0
+/// Can only strafe backwards
+#define MECH_STRAFING_BACK 1
+/// Can strafe in all directions
+#define MECH_STRAFING_OMNI 2
+
+#define MECH_STRAFE_SPEED 1.5

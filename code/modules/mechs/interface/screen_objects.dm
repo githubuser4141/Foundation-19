@@ -332,5 +332,24 @@
 	toggled = owner.head.active_sensors
 	. = ..()
 
+/obj/screen/exosuit/toggle/strafe
+	name = "toggle strafing"
+	icon_state = "small_important"
+	maptext = MECH_UI_STYLE("STRAFE")
+	maptext_x = 1
+	maptext_y = 13
+	height = 12
+
+/obj/screen/exosuit/toggle/strafe/toggled() // Prevents exosuits from strafing when EMP'd enough
+	if(owner.legs.can_strafe == MECH_STRAFING_NONE)
+		to_chat(usr, SPAN_WARNING("Error: This propulsion system doesn't support synchronization!"))
+		return
+	if(owner.emp_damage >= EMP_STRAFE_DISABLE)
+		to_chat(usr, SPAN_WARNING("Error: Coordination systems are unable to synchronize. Contact an authorised exo-electrician immediately."))
+		return
+	owner.strafing = ..()
+	to_chat(usr, SPAN_NOTICE("Strafing [owner.strafing ? "enabled" : "disabled"]."))
+//	playsound(src,'sound/mechs/lever.ogg', 40, 1)
+
 #undef BAR_CAP
 #undef MECH_UI_STYLE

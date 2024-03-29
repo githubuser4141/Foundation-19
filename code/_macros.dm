@@ -54,6 +54,8 @@ var/const/NEGATIVE_INFINITY = -1#INF // win: -1.#INF, lin: -inf
 
 #define isitem(A) istype(A, /obj/item)
 
+#define ismech(A) istype(A, /mob/living/exosuit)
+
 #define isliving(A) istype(A, /mob/living)
 
 #define ismouse(A) istype(A, /mob/living/simple_animal/friendly/mouse)

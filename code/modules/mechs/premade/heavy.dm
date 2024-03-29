@@ -49,7 +49,7 @@
 	exosuit_desc_string = "a reinforced monoeye"
 	desc = "A solitary sensor moves inside a recessed slit in the armour plates."
 	icon_state = "heavy_head"
-	max_damage = 175
+	max_damage = 200
 	power_use = 50
 
 /obj/item/mech_component/sensors/heavy/prebuild()

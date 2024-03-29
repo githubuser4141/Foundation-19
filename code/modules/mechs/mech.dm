@@ -12,7 +12,7 @@
 	status_flags = PASSEMOTES
 	a_intent =     I_HURT
 	mob_size =     MOB_LARGE
-
+	mob_push_flags = ALLMOBS
 	meat_type = null
 	meat_amount = 0
 	skin_material = null
@@ -65,12 +65,16 @@
 	//Air!
 	var/use_air      = FALSE
 
+	// Strafing?
+	var/strafing = FALSE
+
 	// Interface stuff.
 	var/list/hud_elements = list()
 	var/list/hardpoint_hud_elements = list()
 	var/obj/screen/exosuit/health/hud_health
 	var/obj/screen/exosuit/toggle/hatch_open/hud_open
 	var/obj/screen/exosuit/power/hud_power
+	var/obj/screen/exosuit/toggle/hud_strafe
 	var/obj/screen/exosuit/toggle/power_control/hud_power_control
 	var/obj/screen/exosuit/toggle/camera/hud_camera
 	//POWER
@@ -150,6 +154,7 @@
 	hud_health = null
 	hud_open = null
 	hud_power = null
+	hud_strafe = null
 	hud_power_control = null
 	hud_camera = null
 

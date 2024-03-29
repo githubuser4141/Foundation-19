@@ -110,11 +110,12 @@
 	restricted_software = list(MECH_SOFTWARE_MEDICAL)
 	active_power_use = 0 //Usage doesn't really require power. It's per wound
 	origin_tech = list(TECH_DATA = 2, TECH_BIO = 3)
-	var/list/apply_sounds = list('sounds/effects/spray.ogg', 'sound/effects/spray2.ogg', 'sound/effects/spray3.ogg')
+	var/list/apply_sounds = list('sounds/effects/spray.ogg', 'sounds/effects/spray2.ogg', 'sounds/effects/spray3.ogg')
 	var/mode = MEDIGEL_SALVE
 	var/obj/item/device/scanner/health/scanner = null
 
 /obj/item/mech_equipment/mender/attack_self(mob/user)
+	.=..()
 	if (!.)
 		return
 	if (mode == MEDIGEL_SALVE)
